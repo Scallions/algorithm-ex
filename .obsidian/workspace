@@ -1,0 +1,97 @@
+{
+  "main": {
+    "id": "fab5d8fc8568ca1a",
+    "type": "split",
+    "children": [
+      {
+        "id": "50f4bbd975bccc38",
+        "type": "leaf",
+        "active": true,
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "structure/heap/heap.md",
+            "mode": "source"
+          }
+        },
+        "group": "e32f0e60506f4777"
+      },
+      {
+        "id": "83c17b84506f905a",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "structure/heap/heap.md",
+            "mode": "preview"
+          }
+        },
+        "group": "e32f0e60506f4777"
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "2b632cfec085cf28",
+    "type": "split",
+    "children": [
+      {
+        "id": "a79e9bff42949bdd",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bc3a9a2a01150a4d",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "045284ee757feaad",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": ""
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "dea42d18c3c1ee53",
+    "type": "split",
+    "children": [
+      {
+        "id": "ea32360dbf5072c7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "25f662b71f5da4b1",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "structure/heap/heap.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "lastOpenFiles": [
+    "structure/heap/heap.md",
+    "structure/hash/hash.md",
+    "structure/array/array.md",
+    "README.md"
+  ]
+}
