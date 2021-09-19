@@ -52,6 +52,8 @@
  * 进阶：你可以实现时间复杂度为 O(logN) 的解决方案吗？
  * 
  */
+#include <bits/stdc++.h>
+using namespace std;
 
 // @lc code=start
 class Solution {
