@@ -149,3 +149,6 @@ static
 
 ## oj in and out
 data/
+
+## test
+test/
