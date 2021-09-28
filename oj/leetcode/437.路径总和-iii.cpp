@@ -96,4 +96,25 @@ private:
     int count;
 };
 // @lc code=end
-
+class Solution2 {
+public:
+    int pathSum(TreeNode* root, int targetSum) {
+        if(root == nullptr) return 0;
+        ans = 0;
+        presum[0] = 1;
+        dfs(root, 0, targetSum);
+        return ans;
+    }
+private:
+    unordered_map<int, int> presum;
+    int ans;
+    void dfs(TreeNode* root, int cur, int targetSum){
+        if(root==nullptr) return;
+        cur += root->val;
+        if(presum.find(cur-targetSum)!=presum.end()) ans += presum[cur-targetSum];
+        ++presum[cur];
+        dfs(root->left, cur, targetSum);
+        dfs(root->right, cur, targetSum);
+        --presum[cur];
+    }
+};
