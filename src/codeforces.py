@@ -136,7 +136,7 @@ class Codeforces:
 
     def update_db(self):
         t = self.get_update_db_time()
-        if util.now()-t < 24*3600*1000:
+        if util.now()-t < 7*24*3600*1000:
             return
 
         url = "https://codeforces.com/api/problemset.problems"
