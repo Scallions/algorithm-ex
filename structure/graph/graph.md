@@ -43,6 +43,32 @@ $$
 
 重边
 
+### 链式前向星
+
+```c++
+struct Edge{
+  int to;
+  int next;
+  int weight;
+}
+
+vector<Edge> edges(n_edge);
+vector<int> head(n_node, -1);
+
+void add(int u, int v, int cost){
+  // 设置第cnt条边
+  edges[++cnt].to = v;
+  edges[cnt].weight = cost;
+  edges[cnt].next = head[u];
+  // 更新第一条边编号
+  head[u] = cnt;
+}
+
+// 遍历起点为u的边
+for(int k=head[u]; k!=1; k=edges[k].next){
+  
+}
+```
 
 ## 参考资料
 《第05章 图与网络》. 收入 数学建模.
