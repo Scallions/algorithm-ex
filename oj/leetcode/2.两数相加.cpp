@@ -54,7 +54,9 @@
  * 
  * 
  */
-
+#include <bits/stdc++.h>
+#include "struct.h"
+using namespace std;
 // @lc code=start
 /**
  * Definition for singly-linked list.

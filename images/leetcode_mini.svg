@@ -702,6 +702,10 @@
      </text>
     </a>
    </g>
+   <g transform="translate(854.5, -978.0) scale(0.3)">
+    <circle cx="24" cy="24" fill="#4caf50" r="21"/>
+    <polygon fill="#ccff90" points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"/>
+   </g>
   </g>
   <!-- 二分查找树&#45;&gt;538 -->
   <g class="edge" id="edge27">
@@ -1350,6 +1354,10 @@
      </text>
     </a>
    </g>
+   <g transform="translate(884.5, -474.0) scale(0.3)">
+    <circle cx="24" cy="24" fill="#4caf50" r="21"/>
+    <polygon fill="#ccff90" points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"/>
+   </g>
   </g>
   <!-- 1604&#45;&gt;352 -->
   <g class="edge" id="edge58">
@@ -1546,6 +1554,10 @@
      </text>
     </a>
    </g>
+   <g transform="translate(1910.5, -906.0) scale(0.3)">
+    <circle cx="24" cy="24" fill="#4caf50" r="21"/>
+    <polygon fill="#ccff90" points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"/>
+   </g>
   </g>
   <!-- 720&#45;&gt;208 -->
   <g class="edge" id="edge82">
@@ -1567,6 +1579,10 @@
       211. 添加与搜索单词 - 数据结构设计
      </text>
     </a>
+   </g>
+   <g transform="translate(1986.5, -834.0) scale(0.3)">
+    <circle cx="24" cy="24" fill="#4caf50" r="21"/>
+    <polygon fill="#ccff90" points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"/>
    </g>
   </g>
   <!-- 208&#45;&gt;211 -->
