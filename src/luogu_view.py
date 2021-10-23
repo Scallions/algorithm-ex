@@ -4,33 +4,33 @@ import util
 import os
 from pathlib import Path
 import datamap
-import leetcode
+import luogu as lg
 from svgpathtools import svg2paths
 from bs4 import BeautifulSoup
 import platform_view
 
-class LeetcodeView(platform_view.PlatformView):
-    def __init__(self, leet):
-        self.leet = leet
+class LuoguView(platform_view.PlatformView):
+    def __init__(self, luogu):
+        self.luogu = luogu
         self.m = None
-        self.slug = "leetcode"
+        self.slug = "luogu"
 
     def check_finish(self, title):
-        return self.leet.check_finish(title)
+        return self.luogu.check_finish(title)
 
     def get_problem(self, title):
         return self.m.problem_map[title]
 
     def check_flask(self, title):
-        return self.leet.check_flask(title)
+        return self.luogu.check_flask(title)
 
     def is_valid_title(self, title):
-        return title.isdigit()
+        return title.isdigit() or (title[0] == 'P' and title[1:].isdigit())
 
     def post_process(self, path):
         self.add_finish_icon(path)
 
-    def generate_leetcode(self, leet, file, slug, out_name):
+    def generate_luogu(self, luogu, file, slug, out_name):
         c = util.get_file_content(util.get_map(file))
         m = datamap.DataMap(c)
         self.m = m
@@ -41,7 +41,7 @@ class LeetcodeView(platform_view.PlatformView):
                 count = self.get_module_problem_count(m)
                 label = "%s(%s)" % (n.name, str(count))
                 # 根节点
-                g.node(name=n.name, label=label, style='filled', target="_parent", href="https://leetcode-cn.com/tag/"+slug, 
+                g.node(name=n.name, label=label, style='filled', target="_parent", href=f"https://www.luogu.com.cn/problem/list?page=1&orderBy=difficulty&order=asc&keyword={slug}", 
                     fontsize='14',
                     fillcolor="orangered", color='lightgrey', fontcolor="white", fontname="Microsoft YaHei", shape='box')
             else:
@@ -55,28 +55,27 @@ class LeetcodeView(platform_view.PlatformView):
             # add problem
             last = ""
             for p in n.problems:
-                title = leet.get_title(p.id)
-                level = leet.get_level(p.id)
-                problem = leet.get_problem(p.id)
+                title = luogu.get_title(p.id)
+                level = luogu.get_level(p.id)
+                problem = luogu.get_problem(p.id)
                 idstr = str(p.id)
                 if title == None:
                     continue 
                 title = idstr+". "+title
                 color = "lightgrey"
 
-                if level == "Easy":
+                if level <= 2:
                     color = "greenyellow"
-                elif level == "Medium":
+                elif level <= 5:
                     color = "orange"
-                elif level == "Hard":
+                elif level <= 7:
                     color = "red"
                 else:
                     print("unknown level:", level)
                     continue
-                slug = problem['data']['question']['questionTitleSlug']
 
                 # 题目节点
-                g.node(name=idstr, label=title, target="_parent", href="https://leetcode-cn.com/problems/"+slug, 
+                g.node(name=idstr, label=title, target="_parent", href="https://www.luogu.com.cn/problem/"+p.id, 
                         color=color, fontname="Microsoft YaHei", fontsize='12', shape='box')
 
                 if len(last) > 0:
@@ -91,15 +90,8 @@ class LeetcodeView(platform_view.PlatformView):
         self.post_process(util.get_images(out_name)+".svg")
 
 def process():
-    leet = leetcode.Leetcode()
-    view = LeetcodeView(leet)
-    leet.update_db()
-    view.generate_leetcode(leet, "leetcode/leetcode-dp.txt", "dynamic-programming", "leetcode_dp")
-    view.generate_leetcode(leet, "leetcode/leetcode-tree.txt", "tree", "leetcode_tree")
-    view.generate_leetcode(leet, "leetcode/leetcode-mini.txt", "", "leetcode_mini")
-    view.generate_leetcode(leet, "leetcode/leetcode-linked-list.txt", "linked-list", "leetcode_linked_list")
-    view.generate_leetcode(leet, "leetcode/leetcode-union-find.txt", "union-find", "leetcode_union_find")
-    view.generate_leetcode(leet, "leetcode/leetcode-heap-stack-queue.txt", "", "leetcode_heap_stack_queue")
-    view.generate_leetcode(leet, "leetcode/leetcode-geometry.txt", "geometry", "leetcode_geometry")
-    view.generate_leetcode(leet, "leetcode/leetcode-binary-search.txt", "binary-search", "leetcode_binary_search")
-    leet.close_db()
+    luogu = lg.Luogu()
+    view = LuoguView(luogu)
+    luogu.update_db()
+    view.generate_luogu(luogu, "luogu/luogu.txt", "luogu_test", "luogu_test")
+    luogu.close_db()

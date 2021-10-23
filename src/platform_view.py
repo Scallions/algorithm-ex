@@ -41,19 +41,25 @@ svg_icon_flask = '''
 </g>
 '''
 
-class PlatformView(object):
+from abc import ABC, abstractmethod
+
+class PlatformView(ABC):
     def __init__(self):
         self.slug = ""
 
+    @abstractmethod
     def check_finish(self, title):
         return False
 
+    @abstractmethod
     def get_problem(self, id):
         return None
 
+    @abstractmethod
     def check_flask(self, id):
         return False
 
+    @abstractmethod
     def is_valid_title(self, title):
         return title.isdigit()
 
@@ -116,7 +122,8 @@ class PlatformView(object):
         # flask = self.leet.check_flask(title)
         flask = self.check_flask(title)
         if flask != "":
-            url = "https://github.com/acm-clan/algorithm-stone/blob/main/user/%s/%s" % (self.slug, flask)
+            url = "https://github.com/Scallions/algorithm-ex/blob/master/oj/%s/%s" % (self.slug, flask)
+            # url = "https://github.com/acm-clan/algorithm-stone/blob/main/user/%s/%s" % (self.slug, flask)
             text = svg_icon_flask % (str(x0-9), str(y2-9), url)
             t = BeautifulSoup(text, "xml").select_one("g")
             n.append(t)
