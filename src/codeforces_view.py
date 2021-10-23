@@ -34,7 +34,7 @@ class CodeforcesView(platform_view.PlatformView):
     def generate_codeforces(self, code, file, out_name):
         m = datamap.DataMap(util.get_file_content(util.get_map(file)))
         self.m = m
-        g = Digraph('stones', encoding='utf-8')
+        g = Digraph('scallions', encoding='utf-8')
 
         for n in m.nodes:
             if n.is_root:
