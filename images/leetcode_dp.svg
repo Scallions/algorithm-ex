@@ -526,6 +526,10 @@
      </text>
     </a>
    </g>
+   <g transform="translate(357.5, -1338.0) scale(0.3)">
+    <circle cx="24" cy="24" fill="#4caf50" r="21"/>
+    <polygon fill="#ccff90" points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"/>
+   </g>
   </g>
   <!-- 70&#45;&gt;746 -->
   <g class="edge" id="edge8">
@@ -547,6 +551,10 @@
       509. 斐波那契数
      </text>
     </a>
+   </g>
+   <g transform="translate(330.0, -1266.0) scale(0.3)">
+    <circle cx="24" cy="24" fill="#4caf50" r="21"/>
+    <polygon fill="#ccff90" points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"/>
    </g>
   </g>
   <!-- 746&#45;&gt;509 -->
@@ -570,6 +578,10 @@
      </text>
     </a>
    </g>
+   <g transform="translate(323.0, -1194.0) scale(0.3)">
+    <circle cx="24" cy="24" fill="#4caf50" r="21"/>
+    <polygon fill="#ccff90" points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"/>
+   </g>
   </g>
   <!-- 509&#45;&gt;198 -->
   <g class="edge" id="edge10">
@@ -591,6 +603,10 @@
       213. 打家劫舍 II
      </text>
     </a>
+   </g>
+   <g transform="translate(322.5, -1122.0) scale(0.3)">
+    <circle cx="24" cy="24" fill="#4caf50" r="21"/>
+    <polygon fill="#ccff90" points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"/>
    </g>
   </g>
   <!-- 198&#45;&gt;213 -->
