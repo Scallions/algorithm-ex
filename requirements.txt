@@ -1,5 +1,5 @@
 graphviz == 0.16
-requests == 2.18.4
+requests == 2.20.0
 lipsum == 0.1.2
 psutil == 5.8.0
 psrecord == 1.2
