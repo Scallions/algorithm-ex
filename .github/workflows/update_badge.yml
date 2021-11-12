@@ -1,0 +1,21 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Update badge cache
+
+# Controls when the workflow will run
+on:
+  schedule:
+  - cron: "0 2 * * *"
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  
+jobs:
+  curl:
+    runs-on: ubuntu-latest
+    steps:
+    - name: curl
+      uses: wei/curl@master
+      with:
+        args: -X PURGE https://camo.githubusercontent.com/c7a3c8373557fca88752a58b4df97dbc95f07334a244ac3cc04e63b820f83651/687474703a2f2f6c6564652e7363616c6c696f6e732e636e3a33323737322f62616467652f7376672f33613830663830372d343433312d343765612d613632372d356130666434646466636431
+
