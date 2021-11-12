@@ -1410,6 +1410,10 @@
      </text>
     </a>
    </g>
+   <g transform="translate(862.5, -690.0) scale(0.3)">
+    <circle cx="24" cy="24" fill="#4caf50" r="21"/>
+    <polygon fill="#ccff90" points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"/>
+   </g>
   </g>
   <!-- 889&#45;&gt;450 -->
   <g class="edge" id="edge49">
@@ -1457,6 +1461,10 @@
       669. 修剪二叉搜索树
      </text>
     </a>
+   </g>
+   <g transform="translate(837.0, -546.0) scale(0.3)">
+    <circle cx="24" cy="24" fill="#4caf50" r="21"/>
+    <polygon fill="#ccff90" points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"/>
    </g>
   </g>
   <!-- 654&#45;&gt;669 -->
