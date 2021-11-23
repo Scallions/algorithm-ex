@@ -121,13 +121,17 @@ class Luogu:
         t = self.get_update_db_time()
         if util.now()-t < 30*24*3600*1000: # 30 天更新一次
             return
-
-        for page in range(1,137):
+        url = withUrl(f"problem/list?page={page}&_contentOnly=1")
+        f = urllib.request.urlopen(url)
+        content = f.read().decode('utf-8')
+        qlist = json.loads(content)
+        count = qlist["currentData"]["problems"]["count"]
+        pages = count // 50 + 2
+        for page in range(1,pages):
             url = withUrl(f"problem/list?page={page}&_contentOnly=1")
             f = urllib.request.urlopen(url)
             content = f.read().decode('utf-8')
             qlist = json.loads(content)
-
             try:
                 # for q in qlist['stat_status_pairs']:
                 for q in qlist["currentData"]["problems"]["result"]:
