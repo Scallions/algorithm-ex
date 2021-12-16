@@ -59,45 +59,45 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-    int deleteAndEarn(vector<int> &nums) {
-        map<int, int> mp;
-        for (auto num : nums) {
-            mp[num] += num;
-        }
-        int p = -1;
-        int a = 0, b = 0;
-        int t;
-        for (auto &[k, v] : mp) {
-            if (k > p + 1) {
-                b = max(a, b);
-                a = b + v;
-            } else {
-                t = a;
-                a = max(b + v, a);
-                b = max(t, b);
-            }
-            p = k;
-        }
-        return max(a, b);
+  int deleteAndEarn(vector<int> &nums) {
+    map<int, int> mp;
+    for (auto num : nums) {
+      mp[num] += num;
     }
+    int p = -1;
+    int a = 0, b = 0;
+    int t;
+    for (auto &[k, v] : mp) {
+      if (k > p + 1) {
+        b = max(a, b);
+        a = b + v;
+      } else {
+        t = a;
+        a = max(b + v, a);
+        b = max(t, b);
+      }
+      p = k;
+    }
+    return max(a, b);
+  }
 };
 // @lc code=end
 
 class Solution {
 public:
-    int deleteAndEarn(vector<int> &nums) {
-        // 最简单 可以优化dp数组大小
-        vector<int> dp(1e4, 0);
-        for (auto num : nums) {
-            dp[num - 1] += num;
-        }
-        int a = 0, b = 0;
-        int t;
-        for (int i = 0; i < 1e4; ++i) {
-            t = a;
-            a = max(b + dp[i], a);
-            b = max(t, b);
-        }
-        return max(a, b);
+  int deleteAndEarn(vector<int> &nums) {
+    // 最简单 可以优化dp数组大小
+    vector<int> dp(1e4, 0);
+    for (auto num : nums) {
+      dp[num - 1] += num;
     }
+    int a = 0, b = 0;
+    int t;
+    for (int i = 0; i < 1e4; ++i) {
+      t = a;
+      a = max(b + dp[i], a);
+      b = max(t, b);
+    }
+    return max(a, b);
+  }
 };

@@ -69,23 +69,23 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-    int minFallingPathSum(vector<vector<int>> &matrix) {
-        int n = matrix.size();
-        int t;
-        int idx;
-        for (int i = 1; i < n; ++i) {
-            for (int j = 0; j < n; ++j) {
-                t = INT_MAX;
-                for (int k = -1; k < 2; ++k) {
-                    idx = j + k;
-                    if (idx > -1 && idx < n) {
-                        t = min(matrix[i - 1][idx], t);
-                    }
-                }
-                matrix[i][j] += t;
-            }
+  int minFallingPathSum(vector<vector<int>> &matrix) {
+    int n = matrix.size();
+    int t;
+    int idx;
+    for (int i = 1; i < n; ++i) {
+      for (int j = 0; j < n; ++j) {
+        t = INT_MAX;
+        for (int k = -1; k < 2; ++k) {
+          idx = j + k;
+          if (idx > -1 && idx < n) {
+            t = min(matrix[i - 1][idx], t);
+          }
         }
-        return *min_element(matrix[n - 1].begin(), matrix[n - 1].end());
+        matrix[i][j] += t;
+      }
     }
+    return *min_element(matrix[n - 1].begin(), matrix[n - 1].end());
+  }
 };
 // @lc code=end

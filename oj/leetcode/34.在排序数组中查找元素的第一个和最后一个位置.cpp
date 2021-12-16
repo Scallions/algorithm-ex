@@ -62,47 +62,47 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-    vector<int> searchRange(vector<int> &nums, int target) {
-        vector<int> idx(2, -1);
-        int n = nums.size();
-        int l = 0;
-        int r = n - 1;
-        int m;
-        if (n == 0 || target < nums[0] || target > nums[r])
-            return idx;
-        // start
-        while (l < r) {
-            m = l + (r - l) / 2;
-            if (nums[m] == target) {
-                r = m;
-            }
-            if (nums[m] < target) {
-                l = m + 1;
-            }
-            if (nums[m] > target) {
-                r = m - 1;
-            }
-        }
-        if (nums[l] != target)
-            return idx;
-        idx[0] = l;
-        // end
-        l = 0;
-        r = n - 1;
-        while (l < r) {
-            m = r - (r - l) / 2;
-            if (nums[m] == target) {
-                l = m;
-            }
-            if (nums[m] < target) {
-                l = m + 1;
-            }
-            if (nums[m] > target) {
-                r = m - 1;
-            }
-        }
-        idx[1] = r;
-        return idx;
+  vector<int> searchRange(vector<int> &nums, int target) {
+    vector<int> idx(2, -1);
+    int n = nums.size();
+    int l = 0;
+    int r = n - 1;
+    int m;
+    if (n == 0 || target < nums[0] || target > nums[r])
+      return idx;
+    // start
+    while (l < r) {
+      m = l + (r - l) / 2;
+      if (nums[m] == target) {
+        r = m;
+      }
+      if (nums[m] < target) {
+        l = m + 1;
+      }
+      if (nums[m] > target) {
+        r = m - 1;
+      }
     }
+    if (nums[l] != target)
+      return idx;
+    idx[0] = l;
+    // end
+    l = 0;
+    r = n - 1;
+    while (l < r) {
+      m = r - (r - l) / 2;
+      if (nums[m] == target) {
+        l = m;
+      }
+      if (nums[m] < target) {
+        l = m + 1;
+      }
+      if (nums[m] > target) {
+        r = m - 1;
+      }
+    }
+    idx[1] = r;
+    return idx;
+  }
 };
 // @lc code=end

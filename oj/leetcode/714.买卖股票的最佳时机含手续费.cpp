@@ -60,17 +60,17 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-    int maxProfit(vector<int> &prices, int fee) {
-        int f1 = -prices[0];
-        int f2 = 0;
-        int res = 0;
-        int t;
-        for (auto price : prices) {
-            t = f1;
-            f1 = max(f1, f2 - price);
-            f2 = max(t + price - fee, f2);
-        }
-        return f2;
+  int maxProfit(vector<int> &prices, int fee) {
+    int f1 = -prices[0];
+    int f2 = 0;
+    int res = 0;
+    int t;
+    for (auto price : prices) {
+      t = f1;
+      f1 = max(f1, f2 - price);
+      f2 = max(t + price - fee, f2);
     }
+    return f2;
+  }
 };
 // @lc code=end

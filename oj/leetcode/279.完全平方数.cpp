@@ -52,18 +52,18 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-    int numSquares(int n) {
-        vector<int> dp(n + 1);
-        dp[1] = 1;
-        for (int i = 2; i <= n; ++i) {
-            dp[i] = i;
-            for (int j = 1; j <= i; ++j) {
-                if (j * j > i)
-                    break;
-                dp[i] = min(dp[i], dp[i - j * j] + 1);
-            }
-        }
-        return dp[n];
+  int numSquares(int n) {
+    vector<int> dp(n + 1);
+    dp[1] = 1;
+    for (int i = 2; i <= n; ++i) {
+      dp[i] = i;
+      for (int j = 1; j <= i; ++j) {
+        if (j * j > i)
+          break;
+        dp[i] = min(dp[i], dp[i - j * j] + 1);
+      }
     }
+    return dp[n];
+  }
 };
 // @lc code=end

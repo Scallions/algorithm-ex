@@ -75,48 +75,48 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-    int maxSubarraySumCircular(vector<int> &nums) {
-        int res = nums[0];
-        int p = 0;
-        int n = nums.size();
-        vector<int> mm(n, 0);
-        int ps = 0;
-        int pm = nums[0];
-        for (int i = 0; i < n; ++i) {
-            int num = nums[i];
-            p = max(p + num, num);
-            res = max(p, res);
-            ps += nums[i];
-            pm = max(ps, pm);
-            mm[i] = pm;
-        }
-        // 2nd
-        int ps = 0;
-        int pm = nums[n - 1];
-        for (int i = n - 1; i > 0; --i) {
-            ps += nums[i];
-            pm = max(pm, ps);
-            res = max(res, pm + mm[i - 1]);
-        }
-        return res;
+  int maxSubarraySumCircular(vector<int> &nums) {
+    int res = nums[0];
+    int p = 0;
+    int n = nums.size();
+    vector<int> mm(n, 0);
+    int ps = 0;
+    int pm = nums[0];
+    for (int i = 0; i < n; ++i) {
+      int num = nums[i];
+      p = max(p + num, num);
+      res = max(p, res);
+      ps += nums[i];
+      pm = max(ps, pm);
+      mm[i] = pm;
     }
+    // 2nd
+    int ps = 0;
+    int pm = nums[n - 1];
+    for (int i = n - 1; i > 0; --i) {
+      ps += nums[i];
+      pm = max(pm, ps);
+      res = max(res, pm + mm[i - 1]);
+    }
+    return res;
+  }
 };
 // @lc code=end
 // 转换为求最小子数组和
 class Solution1 {
 public:
-    int maxSubarraySumCircular(vector<int> &nums) {
-        int maxCur, maxSum, minCur, minSum, total;
-        maxCur = maxSum = minCur = minSum = total = nums[0];
-        for (int i = 1; i < nums.size(); ++i) {
-            maxCur = maxCur < 0 ? nums[i] : maxCur + nums[i];
-            maxSum = max(maxSum, maxCur);
-            minCur = minCur > 0 ? nums[i] : minCur + nums[i];
-            minSum = min(minSum, minCur);
-            total += nums[i];
-        }
-        if (maxSum < 0)
-            return maxSum;
-        return max(maxSum, total - minSum);
+  int maxSubarraySumCircular(vector<int> &nums) {
+    int maxCur, maxSum, minCur, minSum, total;
+    maxCur = maxSum = minCur = minSum = total = nums[0];
+    for (int i = 1; i < nums.size(); ++i) {
+      maxCur = maxCur < 0 ? nums[i] : maxCur + nums[i];
+      maxSum = max(maxSum, maxCur);
+      minCur = minCur > 0 ? nums[i] : minCur + nums[i];
+      minSum = min(minSum, minCur);
+      total += nums[i];
     }
+    if (maxSum < 0)
+      return maxSum;
+    return max(maxSum, total - minSum);
+  }
 };

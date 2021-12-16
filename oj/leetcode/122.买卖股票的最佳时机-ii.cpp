@@ -65,14 +65,14 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-    int maxProfit(vector<int> &prices) {
-        int l = prices[0];
-        int res = 0;
-        for (auto &p : prices) {
-            res += p > l ? p - l : 0;
-            l = p;
-        }
-        return res;
+  int maxProfit(vector<int> &prices) {
+    int l = prices[0];
+    int res = 0;
+    for (auto &p : prices) {
+      res += p > l ? p - l : 0;
+      l = p;
     }
+    return res;
+  }
 };
 // @lc code=end

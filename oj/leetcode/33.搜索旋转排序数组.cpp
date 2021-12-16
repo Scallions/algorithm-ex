@@ -68,94 +68,94 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-    int search(vector<int> &nums, int target) {
-        // 升序排列， 互不相同， 进行过旋转（任意位置）
-        // 判断target 是否存在
+  int search(vector<int> &nums, int target) {
+    // 升序排列， 互不相同， 进行过旋转（任意位置）
+    // 判断target 是否存在
 
-        // 候选算法 暴力遍历， 二分， 数组= =
+    // 候选算法 暴力遍历， 二分， 数组= =
 
-        // 1
-        // int n = nums.size();
-        // for(int i=0; i<n; ++i){
-        //     if(nums[i] == target) return i;
-        // }
-        // return -1;
+    // 1
+    // int n = nums.size();
+    // for(int i=0; i<n; ++i){
+    //     if(nums[i] == target) return i;
+    // }
+    // return -1;
 
-        // 2 split
-        // 可以先二分找到旋转位置，再查找
-        // int n = nums.size();
-        // if(n==1){
-        //     return nums[0]==target?0:-1;
-        // }
-        // int l = 0;
-        // int r = n-2;
-        // int m=-1;
-        // while(l<=r){
-        //     m = l + (r-l)/2;
-        //     if(nums[m]==target) return m;
-        //     if(nums[m]>nums[m+1]) break;
-        //     if(nums[m]>=nums[l]){
-        //         l = m+1;
-        //     }else{
-        //         r = m-1;
-        //     }
-        // }
-        // if(m!=-1&&nums[m]<nums[m+1]){
-        //     m=-1;
-        // }
-        // // find
-        // if(m!=-1&&(target>nums[m]||target<nums[m+1])) return -1;
-        // if(m!=-1){
-        //     if(target>=nums[0]){
-        //         l = 0;
-        //         r = m;
-        //     }else{
-        //         l = m+1;
-        //         r = n-1;
-        //     }
-        // } else{
-        //     l = 0;
-        //     r = n-1;
-        // }
-        // while(l<=r){
-        //     m = l + (r-l)/2;
-        //     if(nums[m] == target) return m;
-        //     if(nums[m]<target){
-        //         l=m+1;
-        //     }else{
-        //         r=m-1;
-        //     }
-        // }
-        // return -1;
+    // 2 split
+    // 可以先二分找到旋转位置，再查找
+    // int n = nums.size();
+    // if(n==1){
+    //     return nums[0]==target?0:-1;
+    // }
+    // int l = 0;
+    // int r = n-2;
+    // int m=-1;
+    // while(l<=r){
+    //     m = l + (r-l)/2;
+    //     if(nums[m]==target) return m;
+    //     if(nums[m]>nums[m+1]) break;
+    //     if(nums[m]>=nums[l]){
+    //         l = m+1;
+    //     }else{
+    //         r = m-1;
+    //     }
+    // }
+    // if(m!=-1&&nums[m]<nums[m+1]){
+    //     m=-1;
+    // }
+    // // find
+    // if(m!=-1&&(target>nums[m]||target<nums[m+1])) return -1;
+    // if(m!=-1){
+    //     if(target>=nums[0]){
+    //         l = 0;
+    //         r = m;
+    //     }else{
+    //         l = m+1;
+    //         r = n-1;
+    //     }
+    // } else{
+    //     l = 0;
+    //     r = n-1;
+    // }
+    // while(l<=r){
+    //     m = l + (r-l)/2;
+    //     if(nums[m] == target) return m;
+    //     if(nums[m]<target){
+    //         l=m+1;
+    //     }else{
+    //         r=m-1;
+    //     }
+    // }
+    // return -1;
 
-        // 参考2分
-        int n = (int)nums.size();
-        if (!n) {
-            return -1;
-        }
-        if (n == 1) {
-            return nums[0] == target ? 0 : -1;
-        }
-        int l = 0, r = n - 1;
-        while (l <= r) {
-            int mid = (l + r) / 2;
-            if (nums[mid] == target)
-                return mid;
-            if (nums[0] <= nums[mid]) {
-                if (nums[0] <= target && target < nums[mid]) {
-                    r = mid - 1;
-                } else {
-                    l = mid + 1;
-                }
-            } else {
-                if (nums[mid] < target && target <= nums[n - 1]) {
-                    l = mid + 1;
-                } else {
-                    r = mid - 1;
-                }
-            }
-        }
-        return -1;
+    // 参考2分
+    int n = (int)nums.size();
+    if (!n) {
+      return -1;
     }
+    if (n == 1) {
+      return nums[0] == target ? 0 : -1;
+    }
+    int l = 0, r = n - 1;
+    while (l <= r) {
+      int mid = (l + r) / 2;
+      if (nums[mid] == target)
+        return mid;
+      if (nums[0] <= nums[mid]) {
+        if (nums[0] <= target && target < nums[mid]) {
+          r = mid - 1;
+        } else {
+          l = mid + 1;
+        }
+      } else {
+        if (nums[mid] < target && target <= nums[n - 1]) {
+          l = mid + 1;
+        } else {
+          r = mid - 1;
+        }
+      }
+    }
+    return -1;
+  }
 };
 // @lc code=end

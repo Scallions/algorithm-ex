@@ -67,39 +67,39 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-    vector<vector<int>> colorBorder(vector<vector<int>> &grid, int row, int col,
-    int color) {
-        int n = grid.size();
-        int m = grid[0].size();
-        queue<pair<int, int>> q;
-        vector<pair<int, int>> dd{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-        int c = grid[row][col];
-        unordered_set<int> vis;
-        q.push(make_pair(row, col));
-        bool flag;
-        while (!q.empty()) {
-            auto [x, y] = q.front();
-            q.pop();
-            flag = false;
-            for (auto [dx, dy] : dd) {
-                if (x + dx < 0 || x + dx >= n || y + dy < 0 || y + dy >= m) {
-                    flag = true;
-                    continue;
-                }
-                if (vis.find((x + dx) * m + (y + dy)) != vis.end())
-                    continue;
-                if (grid[x + dx][y + dy] == c) {
-                    q.push(make_pair(x + dx, y + dy));
-                } else {
-                    flag = true;
-                }
-            }
-            if (flag) {
-                grid[x][y] = color;
-            }
-            vis.insert(x * m + y);
+  vector<vector<int>> colorBorder(vector<vector<int>> &grid, int row, int col,
+                                  int color) {
+    int n = grid.size();
+    int m = grid[0].size();
+    queue<pair<int, int>> q;
+    vector<pair<int, int>> dd{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+    int c = grid[row][col];
+    unordered_set<int> vis;
+    q.push(make_pair(row, col));
+    bool flag;
+    while (!q.empty()) {
+      auto [x, y] = q.front();
+      q.pop();
+      flag = false;
+      for (auto [dx, dy] : dd) {
+        if (x + dx < 0 || x + dx >= n || y + dy < 0 || y + dy >= m) {
+          flag = true;
+          continue;
         }
-        return grid;
+        if (vis.find((x + dx) * m + (y + dy)) != vis.end())
+          continue;
+        if (grid[x + dx][y + dy] == c) {
+          q.push(make_pair(x + dx, y + dy));
+        } else {
+          flag = true;
+        }
+      }
+      if (flag) {
+        grid[x][y] = color;
+      }
+      vis.insert(x * m + y);
     }
+    return grid;
+  }
 };
 // @lc code=end

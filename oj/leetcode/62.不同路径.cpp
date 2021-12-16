@@ -69,16 +69,16 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-    int uniquePaths(int m, int n) {
-        int t = m + n - 2;
-        long long res = 1;
-        int s = 1;
-        for (int i = 1; i < m; ++i) {
-            res *= t;
-            --t;
-            s *= i;
-        }
-        return res / s;
+  int uniquePaths(int m, int n) {
+    int t = m + n - 2;
+    long long res = 1;
+    int s = 1;
+    for (int i = 1; i < m; ++i) {
+      res *= t;
+      --t;
+      s *= i;
     }
+    return res / s;
+  }
 };
 // @lc code=end

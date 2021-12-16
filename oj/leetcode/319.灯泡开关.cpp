@@ -69,8 +69,6 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-    int bulbSwitch(int n) {
-        return sqrt(n);
-    }
+  int bulbSwitch(int n) { return sqrt(n); }
 };
 // @lc code=end

@@ -55,41 +55,41 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-    int jump(vector<int> &nums) {
-        int c = 0;
-        int l = 0;
-        int nl;
-        int cnt = 0;
-        int n = nums.size() - 1;
-        while (c < n) {
-            nl = l;
-            for (int i = c; i <= l; ++i) {
-                nl = max(nl, i + nums[i]);
-                if (nl >= n)
-                    return cnt + 1;
-            }
-            c = l + 1;
-            l = nl;
-            ++cnt;
-        }
-        return cnt;
+  int jump(vector<int> &nums) {
+    int c = 0;
+    int l = 0;
+    int nl;
+    int cnt = 0;
+    int n = nums.size() - 1;
+    while (c < n) {
+      nl = l;
+      for (int i = c; i <= l; ++i) {
+        nl = max(nl, i + nums[i]);
+        if (nl >= n)
+          return cnt + 1;
+      }
+      c = l + 1;
+      l = nl;
+      ++cnt;
     }
+    return cnt;
+  }
 };
 // @lc code=end
 // 优化过一点的官方题解
 class Solution1 {
 public:
-    int jump(vector<int> &nums) {
-        int maxPos = 0, n = nums.size() - 1, end = 0, step = 0;
-        for (int i = 0; i < n; ++i) {
-            if (maxPos >= i) {
-                maxPos = max(maxPos, i + nums[i]);
-                if (i == end) {
-                    end = maxPos;
-                    ++step;
-                }
-            }
+  int jump(vector<int> &nums) {
+    int maxPos = 0, n = nums.size() - 1, end = 0, step = 0;
+    for (int i = 0; i < n; ++i) {
+      if (maxPos >= i) {
+        maxPos = max(maxPos, i + nums[i]);
+        if (i == end) {
+          end = maxPos;
+          ++step;
         }
-        return step;
+      }
     }
+    return step;
+  }
 };
