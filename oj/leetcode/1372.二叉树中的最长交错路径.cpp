@@ -81,35 +81,35 @@ using namespace std;
  */
 class Solution {
 public:
-  int longestZigZag(TreeNode *root) {
-    dfs(root, -1, true);
-    dfs(root, -1, false);
-    return res;
-  }
+    int longestZigZag(TreeNode *root) {
+        dfs(root, -1, true);
+        dfs(root, -1, false);
+        return res;
+    }
 
-  int res = 0;
+    int res = 0;
 
-  void dfs(TreeNode *root, int l, bool d) {
-    if (root == nullptr) {
-      res = max(res, l);
-      return;
+    void dfs(TreeNode *root, int l, bool d) {
+        if (root == nullptr) {
+            res = max(res, l);
+            return;
+        }
+        if (root->left == nullptr && root->right == nullptr) {
+            res = max(res, l + 1);
+        }
+        if (d) {
+            // left
+            dfs(root->left, l + 1, false);
+            if (root->left) {
+                dfs(root->left, -1, true);
+            }
+        } else {
+            // right
+            dfs(root->right, l + 1, true);
+            if (root->right) {
+                dfs(root->right, -1, false);
+            }
+        }
     }
-    if (root->left == nullptr && root->right == nullptr) {
-      res = max(res, l + 1);
-    }
-    if (d) {
-      // left
-      dfs(root->left, l + 1, false);
-      if (root->left) {
-        dfs(root->left, -1, true);
-      }
-    } else {
-      // right
-      dfs(root->right, l + 1, true);
-      if (root->right) {
-        dfs(root->right, -1, false);
-      }
-    }
-  }
 };
 // @lc code=end

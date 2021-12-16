@@ -54,15 +54,15 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-  int maxScoreSightseeingPair(vector<int> &values) {
-    int pm = values[0];
-    int n = values.size();
-    int res = 0;
-    for (int i = 1; i < n; ++i) {
-      res = max(res, pm + values[i] - i);
-      pm = max(pm, values[i] + i);
+    int maxScoreSightseeingPair(vector<int> &values) {
+        int pm = values[0];
+        int n = values.size();
+        int res = 0;
+        for (int i = 1; i < n; ++i) {
+            res = max(res, pm + values[i] - i);
+            pm = max(pm, values[i] + i);
+        }
+        return res;
     }
-    return res;
-  }
 };
 // @lc code=end

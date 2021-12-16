@@ -67,20 +67,20 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-  int maxPower(string s) {
-    char lc = '0';
-    int l = 1;
-    int res = 1;
-    for (auto c : s) {
-      if (c == lc) {
-        ++l;
-        res = max(l, res);
-      } else {
-        l = 1;
-        lc = c;
-      }
+    int maxPower(string s) {
+        char lc = '0';
+        int l = 1;
+        int res = 1;
+        for (auto c : s) {
+            if (c == lc) {
+                ++l;
+                res = max(l, res);
+            } else {
+                l = 1;
+                lc = c;
+            }
+        }
+        return res;
     }
-    return res;
-  }
 };
 // @lc code=end

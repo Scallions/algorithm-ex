@@ -77,49 +77,49 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-  int wiggleMaxLength(vector<int> &nums) {
-    int n = nums.size();
-    if (n == 1)
-      return 1;
-    int i = 1;
-    for (; i < n; ++i) {
-      if (nums[i] != nums[i - 1])
-        break;
+    int wiggleMaxLength(vector<int> &nums) {
+        int n = nums.size();
+        if (n == 1)
+            return 1;
+        int i = 1;
+        for (; i < n; ++i) {
+            if (nums[i] != nums[i - 1])
+                break;
+        }
+        if (i == n)
+            return 1;
+        int t = nums[i] - nums[i - 1];
+        int t1;
+        int c = 2;
+        for (; i < n; ++i) {
+            t1 = nums[i] - nums[i - 1];
+            if (t1 == 0)
+                continue;
+            if (t1 * t < 0) {
+                ++c;
+            }
+            t = t1;
+        }
+        return c;
     }
-    if (i == n)
-      return 1;
-    int t = nums[i] - nums[i - 1];
-    int t1;
-    int c = 2;
-    for (; i < n; ++i) {
-      t1 = nums[i] - nums[i - 1];
-      if (t1 == 0)
-        continue;
-      if (t1 * t < 0) {
-        ++c;
-      }
-      t = t1;
-    }
-    return c;
-  }
 };
 // @lc code=end
 
 class Solution1 {
 public:
-  int wiggleMaxLength(vector<int> &nums) {
-    int n = nums.size();
-    if (n < 2) {
-      return n;
+    int wiggleMaxLength(vector<int> &nums) {
+        int n = nums.size();
+        if (n < 2) {
+            return n;
+        }
+        int up = 1, down = 1;
+        for (int i = 1; i < n; i++) {
+            if (nums[i] > nums[i - 1]) {
+                up = max(up, down + 1);
+            } else if (nums[i] < nums[i - 1]) {
+                down = max(up + 1, down);
+            }
+        }
+        return max(up, down);
     }
-    int up = 1, down = 1;
-    for (int i = 1; i < n; i++) {
-      if (nums[i] > nums[i - 1]) {
-        up = max(up, down + 1);
-      } else if (nums[i] < nums[i - 1]) {
-        down = max(up + 1, down);
-      }
-    }
-    return max(up, down);
-  }
 };

@@ -47,27 +47,27 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-  int numTrees(int n) {
-    vector<int> dp(n + 1, 1);
-    for (int i = 2; i <= n; ++i) {
-      int res = 0;
-      for (int j = 0; j < i; ++j) {
-        res += dp[j] * dp[i - 1 - j];
-      }
-      dp[i] = res;
+    int numTrees(int n) {
+        vector<int> dp(n + 1, 1);
+        for (int i = 2; i <= n; ++i) {
+            int res = 0;
+            for (int j = 0; j < i; ++j) {
+                res += dp[j] * dp[i - 1 - j];
+            }
+            dp[i] = res;
+        }
+        return dp[n];
     }
-    return dp[n];
-  }
 };
 // @lc code=end
 
 class Solution1 {
 public:
-  int numTrees(int n) {
-    vector<int> res{1,        2,         5,         14,        42,
-                    132,      429,       1430,      4862,      16796,
-                    58786,    208012,    742900,    2674440,   9694845,
-                    35357670, 129644790, 477638700, 1767263190};
-    return res[n - 1];
-  }
+    int numTrees(int n) {
+        vector<int> res{1,        2,         5,         14,        42,
+                        132,      429,       1430,      4862,      16796,
+                        58786,    208012,    742900,    2674440,   9694845,
+                        35357670, 129644790, 477638700, 1767263190};
+        return res[n - 1];
+    }
 };

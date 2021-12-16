@@ -60,13 +60,13 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-  bool isSubsequence(string s, string t) {
-    int l = 0;
-    for (auto c : t) {
-      if (c == s[l])
-        ++l;
+    bool isSubsequence(string s, string t) {
+        int l = 0;
+        for (auto c : t) {
+            if (c == s[l])
+                ++l;
+        }
+        return l == s.size();
     }
-    return l == s.size();
-  }
 };
 // @lc code=end

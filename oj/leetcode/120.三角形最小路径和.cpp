@@ -68,23 +68,23 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-  int minimumTotal(vector<vector<int>> &triangle) {
-    int n = triangle.size();
-    int t;
-    int idx;
-    for (int i = 1; i < n; ++i) {
-      for (int j = 0; j <= i; ++j) {
-        t = INT_MAX;
-        for (int k = -1; k < 1; ++k) {
-          idx = j + k;
-          if (idx > -1 && idx < i) {
-            t = min(t, triangle[i - 1][idx]);
-          }
+    int minimumTotal(vector<vector<int>> &triangle) {
+        int n = triangle.size();
+        int t;
+        int idx;
+        for (int i = 1; i < n; ++i) {
+            for (int j = 0; j <= i; ++j) {
+                t = INT_MAX;
+                for (int k = -1; k < 1; ++k) {
+                    idx = j + k;
+                    if (idx > -1 && idx < i) {
+                        t = min(t, triangle[i - 1][idx]);
+                    }
+                }
+                triangle[i][j] += t;
+            }
         }
-        triangle[i][j] += t;
-      }
+        return *min_element(triangle[n - 1].begin(), triangle[n - 1].end());
     }
-    return *min_element(triangle[n - 1].begin(), triangle[n - 1].end());
-  }
 };
 // @lc code=end

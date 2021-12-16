@@ -61,18 +61,18 @@
 // @lc code=start
 class Solution {
 public:
-  vector<int> getRow(int rowIndex) {
-    vector<int> res;
-    res.push_back(1);
-    for (int i = 0; i < rowIndex; ++i) {
-      res.push_back(1);
-      int l = 1;
-      for (int j = 1; j <= i; ++j) {
-        res[j] += l;
-        l = res[j] - l;
-      }
+    vector<int> getRow(int rowIndex) {
+        vector<int> res;
+        res.push_back(1);
+        for (int i = 0; i < rowIndex; ++i) {
+            res.push_back(1);
+            int l = 1;
+            for (int j = 1; j <= i; ++j) {
+                res[j] += l;
+                l = res[j] - l;
+            }
+        }
+        return res;
     }
-    return res;
-  }
 };
 // @lc code=end

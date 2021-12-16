@@ -87,28 +87,30 @@ using namespace std;
  */
 class Solution {
 public:
-  TreeNode *lcaDeepestLeaves(TreeNode *root) { return get<1>(dfs(root)); }
-
-  tuple<int, TreeNode *> dfs(TreeNode *root) {
-    if (root == nullptr)
-      return make_tuple(-1, root);
-    if (root->left == nullptr && root->right == nullptr)
-      return make_tuple(0, root);
-    int ld, rd, m;
-    TreeNode *left, *right, *t;
-    tie(ld, left) = dfs(root->left);
-    tie(rd, right) = dfs(root->right);
-    if (ld == rd) {
-      m = ld;
-      t = root;
-    } else if (ld > rd) {
-      m = ld;
-      t = left;
-    } else {
-      m = rd;
-      t = right;
+    TreeNode *lcaDeepestLeaves(TreeNode *root) {
+        return get<1>(dfs(root));
     }
-    return make_tuple(m + 1, t);
-  }
+
+    tuple<int, TreeNode *> dfs(TreeNode *root) {
+        if (root == nullptr)
+            return make_tuple(-1, root);
+        if (root->left == nullptr && root->right == nullptr)
+            return make_tuple(0, root);
+        int ld, rd, m;
+        TreeNode *left, *right, *t;
+        tie(ld, left) = dfs(root->left);
+        tie(rd, right) = dfs(root->right);
+        if (ld == rd) {
+            m = ld;
+            t = root;
+        } else if (ld > rd) {
+            m = ld;
+            t = left;
+        } else {
+            m = rd;
+            t = right;
+        }
+        return make_tuple(m + 1, t);
+    }
 };
 // @lc code=end

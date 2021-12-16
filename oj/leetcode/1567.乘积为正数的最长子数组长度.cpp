@@ -70,26 +70,26 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-  int getMaxLen(vector<int> &nums) {
-    int p = 0;
-    int n = 0;
-    int res = 0;
-    int t;
-    for (auto num : nums) {
-      if (num == 0) {
-        p = 0;
-        n = 0;
-      } else if (num > 0) {
-        ++p;
-        n = n == 0 ? 0 : n + 1;
-      } else {
-        t = p;
-        p = n != 0 ? n + 1 : 0;
-        n = t + 1;
-      }
-      res = max(p, res);
+    int getMaxLen(vector<int> &nums) {
+        int p = 0;
+        int n = 0;
+        int res = 0;
+        int t;
+        for (auto num : nums) {
+            if (num == 0) {
+                p = 0;
+                n = 0;
+            } else if (num > 0) {
+                ++p;
+                n = n == 0 ? 0 : n + 1;
+            } else {
+                t = p;
+                p = n != 0 ? n + 1 : 0;
+                n = t + 1;
+            }
+            res = max(p, res);
+        }
+        return res;
     }
-    return res;
-  }
 };
 // @lc code=end

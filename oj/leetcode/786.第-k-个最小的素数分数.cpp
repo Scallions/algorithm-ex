@@ -60,89 +60,89 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-  vector<int> kthSmallestPrimeFraction(vector<int> &arr, int k) {
-    int n = arr.size();
-    vector<int> c(n - 1, 0);
-    auto cmp = [&](const pair<int, int> &x, const pair<int, int> &y) {
-      return x.first * y.second > x.second * y.first;
-    };
-    priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(cmp)> pq(
-        cmp);
-    unordered_map<int, int> mp;
-    for (int i = 1; i < n; ++i) {
-      mp[arr[i]] = i - 1;
-      pq.push(make_pair(arr[0], arr[i]));
+    vector<int> kthSmallestPrimeFraction(vector<int> &arr, int k) {
+        int n = arr.size();
+        vector<int> c(n - 1, 0);
+        auto cmp = [&](const pair<int, int> &x, const pair<int, int> &y) {
+            return x.first * y.second > x.second * y.first;
+        };
+        priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(cmp)> pq(
+                    cmp);
+        unordered_map<int, int> mp;
+        for (int i = 1; i < n; ++i) {
+            mp[arr[i]] = i - 1;
+            pq.push(make_pair(arr[0], arr[i]));
+        }
+        int count = 1;
+        while (count < k) {
+            auto t = pq.top();
+            pq.pop();
+            ++c[mp[t.second]];
+            if (c[mp[t.second]] <= mp[t.second]) {
+                pq.push(make_pair(arr[c[mp[t.second]]], t.second));
+            }
+            ++count;
+        }
+        return {pq.top().first, pq.top().second};
     }
-    int count = 1;
-    while (count < k) {
-      auto t = pq.top();
-      pq.pop();
-      ++c[mp[t.second]];
-      if (c[mp[t.second]] <= mp[t.second]) {
-        pq.push(make_pair(arr[c[mp[t.second]]], t.second));
-      }
-      ++count;
-    }
-    return {pq.top().first, pq.top().second};
-  }
 };
 // @lc code=end
 
 // 官方优先队列
 class Solution1 {
 public:
-  vector<int> kthSmallestPrimeFraction(vector<int> &arr, int k) {
-    int n = arr.size();
-    auto cmp = [&](const pair<int, int> &x, const pair<int, int> &y) {
-      return arr[x.first] * arr[y.second] > arr[x.second] * arr[y.first];
-    };
-    priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(cmp)> q(
-        cmp);
-    for (int j = 1; j < n; ++j) {
-      q.emplace(0, j);
+    vector<int> kthSmallestPrimeFraction(vector<int> &arr, int k) {
+        int n = arr.size();
+        auto cmp = [&](const pair<int, int> &x, const pair<int, int> &y) {
+            return arr[x.first] * arr[y.second] > arr[x.second] * arr[y.first];
+        };
+        priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(cmp)> q(
+                    cmp);
+        for (int j = 1; j < n; ++j) {
+            q.emplace(0, j);
+        }
+        for (int _ = 1; _ < k; ++_) {
+            auto [i, j] = q.top();
+            q.pop();
+            if (i + 1 < j) {
+                q.emplace(i + 1, j);
+            }
+        }
+        return {arr[q.top().first], arr[q.top().second]};
     }
-    for (int _ = 1; _ < k; ++_) {
-      auto [i, j] = q.top();
-      q.pop();
-      if (i + 1 < j) {
-        q.emplace(i + 1, j);
-      }
-    }
-    return {arr[q.top().first], arr[q.top().second]};
-  }
 };
 
 // 官方二分
 class Solution2 {
 public:
-  vector<int> kthSmallestPrimeFraction(vector<int> &arr, int k) {
-    int n = arr.size();
-    double left = 0.0, right = 1.0;
-    while (true) {
-      double mid = (left + right) / 2;
-      int i = -1, count = 0;
-      // 记录最大的分数
-      int x = 0, y = 1;
+    vector<int> kthSmallestPrimeFraction(vector<int> &arr, int k) {
+        int n = arr.size();
+        double left = 0.0, right = 1.0;
+        while (true) {
+            double mid = (left + right) / 2;
+            int i = -1, count = 0;
+            // 记录最大的分数
+            int x = 0, y = 1;
 
-      for (int j = 1; j < n; ++j) {
-        while ((double)arr[i + 1] / arr[j] < mid) {
-          ++i;
-          if (arr[i] * y > arr[j] * x) {
-            x = arr[i];
-            y = arr[j];
-          }
+            for (int j = 1; j < n; ++j) {
+                while ((double)arr[i + 1] / arr[j] < mid) {
+                    ++i;
+                    if (arr[i] * y > arr[j] * x) {
+                        x = arr[i];
+                        y = arr[j];
+                    }
+                }
+                count += i + 1;
+            }
+
+            if (count == k) {
+                return {x, y};
+            }
+            if (count < k) {
+                left = mid;
+            } else {
+                right = mid;
+            }
         }
-        count += i + 1;
-      }
-
-      if (count == k) {
-        return {x, y};
-      }
-      if (count < k) {
-        left = mid;
-      } else {
-        right = mid;
-      }
     }
-  }
 };
