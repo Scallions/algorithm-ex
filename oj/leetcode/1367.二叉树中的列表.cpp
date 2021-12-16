@@ -89,23 +89,23 @@ using namespace std;
  */
 class Solution {
 public:
-  bool isSubPath(ListNode *head, TreeNode *root) {
-    if (startWith(head, root))
-      return true;
-    if (root == nullptr)
-      return false;
-    return isSubPath(head, root->left) || isSubPath(head, root->right);
-  }
+    bool isSubPath(ListNode *head, TreeNode *root) {
+        if (startWith(head, root))
+            return true;
+        if (root == nullptr)
+            return false;
+        return isSubPath(head, root->left) || isSubPath(head, root->right);
+    }
 
-  bool startWith(ListNode *head, TreeNode *root) {
-    if (head == nullptr)
-      return true;
-    if (root == nullptr)
-      return false;
-    if (head->val != root->val)
-      return false;
-    return startWith(head->next, root->left) ||
-           startWith(head->next, root->right);
-  }
+    bool startWith(ListNode *head, TreeNode *root) {
+        if (head == nullptr)
+            return true;
+        if (root == nullptr)
+            return false;
+        if (head->val != root->val)
+            return false;
+        return startWith(head->next, root->left) ||
+               startWith(head->next, root->right);
+    }
 };
 // @lc code=end

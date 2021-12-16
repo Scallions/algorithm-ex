@@ -65,55 +65,57 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-  int scheduleCourse(vector<vector<int>> &courses) {
-    sort(courses.begin(), courses.end(),
-         [](const auto &c0, const auto &c1) { return c0[1] < c1[1]; });
-    priority_queue<int> q;
-    int total = 0;
-    int ti, di;
-    for (const auto &course : courses) {
-      ti = course[0];
-      di = course[1];
-      if (total + ti <= di) {
-        total += ti;
-        q.push(ti);
-      } else if (!q.empty() && q.top() > ti) {
-        total -= q.top() - ti;
-        q.pop();
-        q.push(ti);
-      }
+    int scheduleCourse(vector<vector<int>> &courses) {
+        sort(courses.begin(), courses.end(),
+        [](const auto &c0, const auto &c1) {
+            return c0[1] < c1[1];
+        });
+        priority_queue<int> q;
+        int total = 0;
+        int ti, di;
+        for (const auto &course : courses) {
+            ti = course[0];
+            di = course[1];
+            if (total + ti <= di) {
+                total += ti;
+                q.push(ti);
+            } else if (!q.empty() && q.top() > ti) {
+                total -= q.top() - ti;
+                q.pop();
+                q.push(ti);
+            }
+        }
+        return q.size();
     }
-    return q.size();
-  }
 };
 // @lc code=end
 
 // 超时
 class Solution1 {
 public:
-  int scheduleCourse(vector<vector<int>> &courses) {
-    vector<int> dp(20001, -1);
-    dp[0] = 0;
-    int d, l;
-    auto cmp = [&](const vector<int> &x, const vector<int> &y) {
-      // return x[0] != y[0]?x[0]<y[0]:x[1]<y[1];
-      return x[1] != y[1] ? x[1] < y[1] : x[0] < y[0];
-    };
-    sort(courses.begin(), courses.end(), cmp);
-    for (auto c : courses) {
-      // cout << c[0] <<"," << c[1] << endl;
-      d = c[0];
-      l = min(c[1], 10000);
-      for (int i = l; i >= d; --i) {
-        if (dp[i - d] != -1) {
-          dp[i] = max(dp[i], dp[i - d] + 1);
+    int scheduleCourse(vector<vector<int>> &courses) {
+        vector<int> dp(20001, -1);
+        dp[0] = 0;
+        int d, l;
+        auto cmp = [&](const vector<int> &x, const vector<int> &y) {
+            // return x[0] != y[0]?x[0]<y[0]:x[1]<y[1];
+            return x[1] != y[1] ? x[1] < y[1] : x[0] < y[0];
+        };
+        sort(courses.begin(), courses.end(), cmp);
+        for (auto c : courses) {
+            // cout << c[0] <<"," << c[1] << endl;
+            d = c[0];
+            l = min(c[1], 10000);
+            for (int i = l; i >= d; --i) {
+                if (dp[i - d] != -1) {
+                    dp[i] = max(dp[i], dp[i - d] + 1);
+                }
+            }
         }
-      }
+        int res = 0;
+        for (int i = 0; i <= 20000; ++i) {
+            res = max(res, dp[i]);
+        }
+        return res;
     }
-    int res = 0;
-    for (int i = 0; i <= 20000; ++i) {
-      res = max(res, dp[i]);
-    }
-    return res;
-  }
 };

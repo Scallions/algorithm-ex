@@ -50,28 +50,28 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-  int nthUglyNumber(int n) {
-    vector<int> dp;
-    dp.push_back(1);
-    vector<int> idx(3, 0);
-    vector<int> dd{2, 3, 5};
-    vector<int> mm{2, 3, 5};
-    for (int i = 1; i < n; ++i) {
-      int m = INT_MAX;
-      for (int j = 0; j < 3; ++j) {
-        if (mm[j] < m) {
-          m = mm[j];
+    int nthUglyNumber(int n) {
+        vector<int> dp;
+        dp.push_back(1);
+        vector<int> idx(3, 0);
+        vector<int> dd{2, 3, 5};
+        vector<int> mm{2, 3, 5};
+        for (int i = 1; i < n; ++i) {
+            int m = INT_MAX;
+            for (int j = 0; j < 3; ++j) {
+                if (mm[j] < m) {
+                    m = mm[j];
+                }
+            }
+            dp.push_back(m);
+            for (int j = 0; j < 3; ++j) {
+                if (mm[j] == m) {
+                    ++idx[j];
+                    mm[j] = dp[idx[j]] * dd[j];
+                }
+            }
         }
-      }
-      dp.push_back(m);
-      for (int j = 0; j < 3; ++j) {
-        if (mm[j] == m) {
-          ++idx[j];
-          mm[j] = dp[idx[j]] * dd[j];
-        }
-      }
+        return dp[n - 1];
     }
-    return dp[n - 1];
-  }
 };
 // @lc code=end

@@ -78,24 +78,24 @@ using namespace std;
  */
 class Solution {
 public:
-  string smallestFromLeaf(TreeNode *root) {
-    dfs(root, "");
-    return res;
-  }
-
-  void dfs(TreeNode *root, string t) {
-    if (root == nullptr)
-      return;
-    if (root->left == nullptr && root->right == nullptr) {
-      if (res == "")
-        res = char('a' + root->val) + t;
-      else
-        res = min(res, char('a' + root->val) + t);
+    string smallestFromLeaf(TreeNode *root) {
+        dfs(root, "");
+        return res;
     }
-    dfs(root->left, char('a' + root->val) + t);
-    dfs(root->right, char('a' + root->val) + t);
-  }
 
-  string res;
+    void dfs(TreeNode *root, string t) {
+        if (root == nullptr)
+            return;
+        if (root->left == nullptr && root->right == nullptr) {
+            if (res == "")
+                res = char('a' + root->val) + t;
+            else
+                res = min(res, char('a' + root->val) + t);
+        }
+        dfs(root->left, char('a' + root->val) + t);
+        dfs(root->right, char('a' + root->val) + t);
+    }
+
+    string res;
 };
 // @lc code=end

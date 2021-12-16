@@ -60,47 +60,47 @@ using namespace std;
  */
 class Solution {
 public:
-  int sumEvenGrandparent(TreeNode *root) {
-    if (root == nullptr)
-      return 0;
-    if (root->left) {
-      mp[root->left] = root;
+    int sumEvenGrandparent(TreeNode *root) {
+        if (root == nullptr)
+            return 0;
+        if (root->left) {
+            mp[root->left] = root;
+        }
+        if (root->right) {
+            mp[root->right] = root;
+        }
+        int t = 0;
+        if (mp.find(root) != mp.end() && mp.find(mp[root]) != mp.end() &&
+                mp[mp[root]]->val % 2 == 0) {
+            t = root->val;
+        }
+        int l = sumEvenGrandparent(root->left);
+        int r = sumEvenGrandparent(root->right);
+        return l + r + t;
     }
-    if (root->right) {
-      mp[root->right] = root;
-    }
-    int t = 0;
-    if (mp.find(root) != mp.end() && mp.find(mp[root]) != mp.end() &&
-        mp[mp[root]]->val % 2 == 0) {
-      t = root->val;
-    }
-    int l = sumEvenGrandparent(root->left);
-    int r = sumEvenGrandparent(root->right);
-    return l + r + t;
-  }
-  map<TreeNode *, TreeNode *> mp;
+    map<TreeNode *, TreeNode *> mp;
 };
 // @lc code=end
 
 // 官方题解直接记录
 class Solution1 {
 private:
-  int ans = 0;
+    int ans = 0;
 
 public:
-  void dfs(int gp_val, int p_val, TreeNode *node) {
-    if (!node) {
-      return;
+    void dfs(int gp_val, int p_val, TreeNode *node) {
+        if (!node) {
+            return;
+        }
+        if (gp_val % 2 == 0) {
+            ans += node->val;
+        }
+        dfs(p_val, node->val, node->left);
+        dfs(p_val, node->val, node->right);
     }
-    if (gp_val % 2 == 0) {
-      ans += node->val;
-    }
-    dfs(p_val, node->val, node->left);
-    dfs(p_val, node->val, node->right);
-  }
 
-  int sumEvenGrandparent(TreeNode *root) {
-    dfs(1, 1, root);
-    return ans;
-  }
+    int sumEvenGrandparent(TreeNode *root) {
+        dfs(1, 1, root);
+        return ans;
+    }
 };

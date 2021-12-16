@@ -55,15 +55,15 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-  bool canJump(vector<int> &nums) {
-    int l = 0;
-    int n = nums.size();
-    for (int i = 0; i < n; ++i) {
-      if (i > l)
-        return false;
-      l = max(l, i + nums[i]);
+    bool canJump(vector<int> &nums) {
+        int l = 0;
+        int n = nums.size();
+        for (int i = 0; i < n; ++i) {
+            if (i > l)
+                return false;
+            l = max(l, i + nums[i]);
+        }
+        return true;
     }
-    return true;
-  }
 };
 // @lc code=end

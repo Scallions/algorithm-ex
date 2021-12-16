@@ -63,52 +63,52 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-  int integerReplacement(int n) {
-    int c = 0;
-    long long t = n;
-    while (t != 0) {
-      while ((t & 1) != 1) {
-        t >>= 1;
-        ++c;
-      }
-      if ((t & 3) == 3) {
-        if (t == 3)
-          return c + 2;
-        ++t;
-      } else {
-        t -= 1;
-      }
-      ++c;
+    int integerReplacement(int n) {
+        int c = 0;
+        long long t = n;
+        while (t != 0) {
+            while ((t & 1) != 1) {
+                t >>= 1;
+                ++c;
+            }
+            if ((t & 3) == 3) {
+                if (t == 3)
+                    return c + 2;
+                ++t;
+            } else {
+                t -= 1;
+            }
+            ++c;
+        }
+        return c - 1;
     }
-    return c - 1;
-  }
 };
 // @lc code=end
 
 class Solution {
 public:
-  int integerReplacement(int n) {
-    int c = 0;
-    queue<long long> q;
-    long long t;
-    q.push(n);
-    int ql;
-    while (!q.empty()) {
-      ql = q.size();
-      for (int i = 0; i < ql; ++i) {
-        t = q.front();
-        q.pop();
-        if (t == 1)
-          return c;
-        if (t % 2 == 0) {
-          q.push(t >> 1);
-        } else {
-          q.push(t + 1);
-          q.push(t - 1);
+    int integerReplacement(int n) {
+        int c = 0;
+        queue<long long> q;
+        long long t;
+        q.push(n);
+        int ql;
+        while (!q.empty()) {
+            ql = q.size();
+            for (int i = 0; i < ql; ++i) {
+                t = q.front();
+                q.pop();
+                if (t == 1)
+                    return c;
+                if (t % 2 == 0) {
+                    q.push(t >> 1);
+                } else {
+                    q.push(t + 1);
+                    q.push(t - 1);
+                }
+            }
+            ++c;
         }
-      }
-      ++c;
+        return c;
     }
-    return c;
-  }
 };

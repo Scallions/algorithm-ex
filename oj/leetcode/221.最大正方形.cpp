@@ -59,19 +59,19 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-  int maximalSquare(vector<vector<char>> &matrix) {
-    int m = matrix.size();
-    int n = matrix[0].size();
-    int t;
-    for (int i = 1; i < m; ++i) {
-      for (int j = 1; j < n; ++j) {
-        if (matrix[i][j] == 0)
-          continue;
-        t = min(matrix[i - 1][j], matrix[i][j - 1]);
-        matrix[i][j] = t + matrix[i - t][j - t] == 1;
-      }
+    int maximalSquare(vector<vector<char>> &matrix) {
+        int m = matrix.size();
+        int n = matrix[0].size();
+        int t;
+        for (int i = 1; i < m; ++i) {
+            for (int j = 1; j < n; ++j) {
+                if (matrix[i][j] == 0)
+                    continue;
+                t = min(matrix[i - 1][j], matrix[i][j - 1]);
+                matrix[i][j] = t + matrix[i - t][j - t] == 1;
+            }
+        }
+        return matrix[m - 1][n - 1];
     }
-    return matrix[m - 1][n - 1];
-  }
 };
 // @lc code=end

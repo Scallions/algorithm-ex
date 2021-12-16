@@ -78,31 +78,31 @@ using namespace std;
  */
 class Solution {
 public:
-  int pseudoPalindromicPaths(TreeNode *root) {
-    mp = vector<int>(9, 0);
-    count = 0;
-    dfs(root);
-    return count;
-  }
-
-  vector<int> mp;
-  int count;
-  void dfs(TreeNode *root) {
-    if (root == nullptr)
-      return;
-    ++mp[root->val - 1];
-    if (root->left == nullptr && root->right == nullptr) {
-      // 叶子节点
-      int c_ji = 0;
-      for (int i = 0; i < 9; ++i) {
-        c_ji += (mp[i] % 2 == 1);
-      }
-      if (c_ji < 2)
-        ++count;
+    int pseudoPalindromicPaths(TreeNode *root) {
+        mp = vector<int>(9, 0);
+        count = 0;
+        dfs(root);
+        return count;
     }
-    dfs(root->left);
-    dfs(root->right);
-    --mp[root->val - 1];
-  }
+
+    vector<int> mp;
+    int count;
+    void dfs(TreeNode *root) {
+        if (root == nullptr)
+            return;
+        ++mp[root->val - 1];
+        if (root->left == nullptr && root->right == nullptr) {
+            // 叶子节点
+            int c_ji = 0;
+            for (int i = 0; i < 9; ++i) {
+                c_ji += (mp[i] % 2 == 1);
+            }
+            if (c_ji < 2)
+                ++count;
+        }
+        dfs(root->left);
+        dfs(root->right);
+        --mp[root->val - 1];
+    }
 };
 // @lc code=end

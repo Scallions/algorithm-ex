@@ -90,30 +90,30 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-  int numDecodings(string s) {
-    if (s[0] == '0')
-      return 0;
-    int n = s.size();
-    int l1 = 1;
-    int l2 = 1;
-    for (int i = 1; i < n; ++i) {
-      int t = (s[i - 1] - '0') * 10 + s[i] - '0';
-      if (t == 0 || (s[i] == '0' && s[i - 1] > '2'))
-        return 0;
-      if (s[i - 1] == '0' || t > 26) {
-        l2 = l1;
-        continue;
-      }
-      if (s[i] == '0') {
-        int t = l1;
-        l1 = l2;
-        l2 = t;
-        continue;
-      }
-      l1 = l1 + l2;
-      l2 = l1 - l2;
+    int numDecodings(string s) {
+        if (s[0] == '0')
+            return 0;
+        int n = s.size();
+        int l1 = 1;
+        int l2 = 1;
+        for (int i = 1; i < n; ++i) {
+            int t = (s[i - 1] - '0') * 10 + s[i] - '0';
+            if (t == 0 || (s[i] == '0' && s[i - 1] > '2'))
+                return 0;
+            if (s[i - 1] == '0' || t > 26) {
+                l2 = l1;
+                continue;
+            }
+            if (s[i] == '0') {
+                int t = l1;
+                l1 = l2;
+                l2 = t;
+                continue;
+            }
+            l1 = l1 + l2;
+            l2 = l1 - l2;
+        }
+        return l1;
     }
-    return l1;
-  }
 };
 // @lc code=end

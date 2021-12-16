@@ -56,12 +56,12 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-  int minCostClimbingStairs(vector<int> &cost) {
-    // 代表从这个阶梯往上走消耗
-    for (int i = 2; i < cost.size(); ++i) {
-      cost[i] += min(cost[i - 1], cost[i - 2]);
+    int minCostClimbingStairs(vector<int> &cost) {
+        // 代表从这个阶梯往上走消耗
+        for (int i = 2; i < cost.size(); ++i) {
+            cost[i] += min(cost[i - 1], cost[i - 2]);
+        }
+        return min(cost[cost.size() - 1], cost[cost.size() - 2]);
     }
-    return min(cost[cost.size() - 1], cost[cost.size() - 2]);
-  }
 };
 // @lc code=end

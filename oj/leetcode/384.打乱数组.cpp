@@ -61,21 +61,23 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-  Solution(vector<int> &nums) : back(nums.begin(), nums.end()), nums(nums) {}
+    Solution(vector<int> &nums) : back(nums.begin(), nums.end()), nums(nums) {}
 
-  vector<int> reset() { return back; }
-
-  vector<int> shuffle() {
-    int n = nums.size();
-    for (int i = 0; i < n; ++i) {
-      int l = rand() % n;
-      int r = rand() % n;
-      swap(nums[l], nums[r]);
+    vector<int> reset() {
+        return back;
     }
-    return nums;
-  }
-  vector<int> back;
-  vector<int> nums;
+
+    vector<int> shuffle() {
+        int n = nums.size();
+        for (int i = 0; i < n; ++i) {
+            int l = rand() % n;
+            int r = rand() % n;
+            swap(nums[l], nums[r]);
+        }
+        return nums;
+    }
+    vector<int> back;
+    vector<int> nums;
 };
 
 /**

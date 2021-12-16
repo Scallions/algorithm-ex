@@ -72,18 +72,18 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-  int change(int amount, vector<int> &coins) {
-    // bp
-    vector<int> dp(amount + 1, 0);
-    dp[0] = 1;
-    for (auto c : coins) {
-      for (int i = c; i <= amount; ++i) {
-        if (dp[i - c] != -1) {
-          dp[i] += dp[i - c];
+    int change(int amount, vector<int> &coins) {
+        // bp
+        vector<int> dp(amount + 1, 0);
+        dp[0] = 1;
+        for (auto c : coins) {
+            for (int i = c; i <= amount; ++i) {
+                if (dp[i - c] != -1) {
+                    dp[i] += dp[i - c];
+                }
+            }
         }
-      }
+        return dp[amount];
     }
-    return dp[amount];
-  }
 };
 // @lc code=end

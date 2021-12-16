@@ -76,44 +76,46 @@ using namespace std;
  */
 class Solution {
 public:
-  void flatten(TreeNode *root) { dfs(root); }
-  TreeNode *dfs(TreeNode *root) {
-    if (root == nullptr)
-      return root;
-    TreeNode *left = dfs(root->left);
-    TreeNode *right = dfs(root->right);
-    if (left) {
-      root->left = nullptr;
-      root->right = left;
-      while (left && left->right) {
-        left = left->right;
-      }
-      left->right = right;
-    } else {
-      root->right = right;
+    void flatten(TreeNode *root) {
+        dfs(root);
     }
-    return root;
-  }
+    TreeNode *dfs(TreeNode *root) {
+        if (root == nullptr)
+            return root;
+        TreeNode *left = dfs(root->left);
+        TreeNode *right = dfs(root->right);
+        if (left) {
+            root->left = nullptr;
+            root->right = left;
+            while (left && left->right) {
+                left = left->right;
+            }
+            left->right = right;
+        } else {
+            root->right = right;
+        }
+        return root;
+    }
 };
 // @lc code=end
 
 // 官方答案，迭代，寻找左节点的最右元素
 class Solution1 {
 public:
-  void flatten(TreeNode *root) {
-    TreeNode *curr = root;
-    while (curr != nullptr) {
-      if (curr->left != nullptr) {
-        auto next = curr->left;
-        auto predecessor = next;
-        while (predecessor->right != nullptr) {
-          predecessor = predecessor->right;
+    void flatten(TreeNode *root) {
+        TreeNode *curr = root;
+        while (curr != nullptr) {
+            if (curr->left != nullptr) {
+                auto next = curr->left;
+                auto predecessor = next;
+                while (predecessor->right != nullptr) {
+                    predecessor = predecessor->right;
+                }
+                predecessor->right = curr->right;
+                curr->left = nullptr;
+                curr->right = next;
+            }
+            curr = curr->right;
         }
-        predecessor->right = curr->right;
-        curr->left = nullptr;
-        curr->right = next;
-      }
-      curr = curr->right;
     }
-  }
 };
