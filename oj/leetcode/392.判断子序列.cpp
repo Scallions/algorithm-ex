@@ -20,8 +20,8 @@
  *
  * 进阶：
  *
- * 如果有大量输入的 S，称作 S1, S2, ... , Sk 其中 k >= 10亿，你需要依次检查它们是否为 T
- * 的子序列。在这种情况下，你会怎样改变代码？
+ * 如果有大量输入的 S，称作 S1, S2, ... , Sk 其中 k >=
+ * 10亿，你需要依次检查它们是否为 T 的子序列。在这种情况下，你会怎样改变代码？
  *
  * 致谢：
  *
@@ -54,19 +54,19 @@
  *
  *
  */
-#include <bits/stdc++.h>
 #include "struct.h"
+#include <bits/stdc++.h>
 using namespace std;
 // @lc code=start
 class Solution {
 public:
-    bool isSubsequence(string s, string t) {
-        int l = 0;
-        for(auto c: t) {
-            if(c == s[l]) ++l;
-        }
-        return l == s.size();
+  bool isSubsequence(string s, string t) {
+    int l = 0;
+    for (auto c : t) {
+      if (c == s[l])
+        ++l;
     }
+    return l == s.size();
+  }
 };
 // @lc code=end
-

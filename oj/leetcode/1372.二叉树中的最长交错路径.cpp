@@ -11,7 +11,8 @@
  * Dislikes: 0
  * Total Accepted:    8.4K
  * Total Submissions: 16.4K
- * Testcase Example:  '[1,null,1,1,1,null,null,1,1,null,1,null,null,null,1,null,1]'
+ * Testcase Example:
+ * '[1,null,1,1,1,null,null,1,1,null,1,null,null,null,1,null,1]'
  *
  * 给你一棵以 root 为根的二叉树，二叉树中的交错路径定义如下：
  *
@@ -62,8 +63,8 @@
  *
  *
  */
-#include <bits/stdc++.h>
 #include "struct.h"
+#include <bits/stdc++.h>
 using namespace std;
 // @lc code=start
 /**
@@ -74,41 +75,41 @@ using namespace std;
  *     TreeNode *right;
  *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
  *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left),
+ * right(right) {}
  * };
  */
 class Solution {
 public:
-    int longestZigZag(TreeNode* root) {
-        dfs(root, -1, true);
-        dfs(root, -1, false);
-        return res;
-    }
+  int longestZigZag(TreeNode *root) {
+    dfs(root, -1, true);
+    dfs(root, -1, false);
+    return res;
+  }
 
-    int res = 0;
+  int res = 0;
 
-    void dfs(TreeNode* root, int l, bool d) {
-        if(root == nullptr) {
-            res = max(res, l);
-            return;
-        }
-        if(root->left == nullptr && root->right == nullptr) {
-            res = max(res, l+1);
-        }
-        if(d) {
-            // left
-            dfs(root->left, l+1, false);
-            if(root->left) {
-                dfs(root->left,-1, true);
-            }
-        } else {
-            // right
-            dfs(root->right, l+1, true);
-            if(root->right) {
-                dfs(root->right,-1,false);
-            }
-        }
+  void dfs(TreeNode *root, int l, bool d) {
+    if (root == nullptr) {
+      res = max(res, l);
+      return;
     }
+    if (root->left == nullptr && root->right == nullptr) {
+      res = max(res, l + 1);
+    }
+    if (d) {
+      // left
+      dfs(root->left, l + 1, false);
+      if (root->left) {
+        dfs(root->left, -1, true);
+      }
+    } else {
+      // right
+      dfs(root->right, l + 1, true);
+      if (root->right) {
+        dfs(root->right, -1, false);
+      }
+    }
+  }
 };
 // @lc code=end
-

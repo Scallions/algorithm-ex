@@ -42,8 +42,8 @@
  *
  *
  */
-#include <bits/stdc++.h>
 #include "struct.h"
+#include <bits/stdc++.h>
 using namespace std;
 // @lc code=start
 /**
@@ -54,50 +54,53 @@ using namespace std;
  *     TreeNode *right;
  *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
  *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left),
+ * right(right) {}
  * };
  */
 class Solution {
 public:
-    int sumEvenGrandparent(TreeNode* root) {
-        if(root == nullptr) return 0;
-        if(root->left) {
-            mp[root->left] = root;
-        }
-        if(root->right) {
-            mp[root->right] = root;
-        }
-        int t = 0;
-        if(mp.find(root) != mp.end() && mp.find(mp[root]) != mp.end() && mp[mp[root]]->val%2 == 0) {
-            t = root->val;
-        }
-        int l = sumEvenGrandparent(root->left);
-        int r = sumEvenGrandparent(root->right);
-        return l + r + t;
+  int sumEvenGrandparent(TreeNode *root) {
+    if (root == nullptr)
+      return 0;
+    if (root->left) {
+      mp[root->left] = root;
     }
-    map<TreeNode*, TreeNode*> mp;
+    if (root->right) {
+      mp[root->right] = root;
+    }
+    int t = 0;
+    if (mp.find(root) != mp.end() && mp.find(mp[root]) != mp.end() &&
+        mp[mp[root]]->val % 2 == 0) {
+      t = root->val;
+    }
+    int l = sumEvenGrandparent(root->left);
+    int r = sumEvenGrandparent(root->right);
+    return l + r + t;
+  }
+  map<TreeNode *, TreeNode *> mp;
 };
 // @lc code=end
 
 // 官方题解直接记录
 class Solution1 {
 private:
-    int ans = 0;
+  int ans = 0;
 
 public:
-    void dfs(int gp_val, int p_val, TreeNode* node) {
-        if (!node) {
-            return;
-        }
-        if (gp_val % 2 == 0) {
-            ans += node->val;
-        }
-        dfs(p_val, node->val, node->left);
-        dfs(p_val, node->val, node->right);
+  void dfs(int gp_val, int p_val, TreeNode *node) {
+    if (!node) {
+      return;
     }
+    if (gp_val % 2 == 0) {
+      ans += node->val;
+    }
+    dfs(p_val, node->val, node->left);
+    dfs(p_val, node->val, node->right);
+  }
 
-    int sumEvenGrandparent(TreeNode* root) {
-        dfs(1, 1, root);
-        return ans;
-    }
+  int sumEvenGrandparent(TreeNode *root) {
+    dfs(1, 1, root);
+    return ans;
+  }
 };

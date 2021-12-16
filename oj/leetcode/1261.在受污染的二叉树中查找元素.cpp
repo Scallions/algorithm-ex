@@ -17,9 +17,11 @@
  *
  *
  * root.val == 0
- * 如果 treeNode.val == x 且 treeNode.left != null，那么 treeNode.left.val == 2 * x +
+ * 如果 treeNode.val == x 且 treeNode.left != null，那么 treeNode.left.val == 2
+ * * x +
  * 1
- * 如果 treeNode.val == x 且 treeNode.right != null，那么 treeNode.right.val == 2 * x
+ * 如果 treeNode.val == x 且 treeNode.right != null，那么 treeNode.right.val ==
+ * 2 * x
  * + 2
  *
  *
@@ -29,7 +31,8 @@
  *
  *
  * FindElements(TreeNode* root) 用受污染的二叉树初始化对象，你需要先把它还原。
- * bool find(int target) 判断目标值 target 是否存在于还原后的二叉树中并返回结果。
+ * bool find(int
+ * target) 判断目标值 target 是否存在于还原后的二叉树中并返回结果。
  *
  *
  *
@@ -93,8 +96,8 @@
  *
  *
  */
-#include <bits/stdc++.h>
 #include "struct.h"
+#include <bits/stdc++.h>
 using namespace std;
 // @lc code=start
 /**
@@ -105,38 +108,38 @@ using namespace std;
  *     TreeNode *right;
  *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
  *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left),
+ * right(right) {}
  * };
  */
 class FindElements {
 public:
-    FindElements(TreeNode* root) {
-        if(root == nullptr) return;
-        r = root;
-        r->val = 0;
-        queue<TreeNode*> q;
-        q.push(r);
-        while(!q.empty()) {
-            root = q.front();
-            mp.insert(root->val);
-            q.pop();
-            if(root->left) {
-                root->left->val = root->val*2+1;
-                q.push(root->left);
-            }
-            if(root->right) {
-                root->right->val = root->val*2+2;
-                q.push(root->right);
-            }
-        }
+  FindElements(TreeNode *root) {
+    if (root == nullptr)
+      return;
+    r = root;
+    r->val = 0;
+    queue<TreeNode *> q;
+    q.push(r);
+    while (!q.empty()) {
+      root = q.front();
+      mp.insert(root->val);
+      q.pop();
+      if (root->left) {
+        root->left->val = root->val * 2 + 1;
+        q.push(root->left);
+      }
+      if (root->right) {
+        root->right->val = root->val * 2 + 2;
+        q.push(root->right);
+      }
     }
+  }
 
-    bool find(int target) {
-        return mp.find(target) != mp.end();
-    }
+  bool find(int target) { return mp.find(target) != mp.end(); }
 
-    TreeNode* r;
-    unordered_set<int> mp;
+  TreeNode *r;
+  unordered_set<int> mp;
 };
 
 /**
@@ -145,4 +148,3 @@ public:
  * bool param_1 = obj->find(target);
  */
 // @lc code=end
-

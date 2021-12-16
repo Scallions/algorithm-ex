@@ -20,7 +20,8 @@
  *
  * 叶节点 是二叉树中没有子节点的节点
  * 树的根节点的 深度 为 0，如果某一节点的深度为 d，那它的子节点的深度就是 d+1
- * 如果我们假定 A 是一组节点 S 的 最近公共祖先，S 中的每个节点都在以 A 为根节点的子树中，且 A 的深度达到此条件下可能的最大值。
+ * 如果我们假定 A 是一组节点 S 的 最近公共祖先，S 中的每个节点都在以 A
+ * 为根节点的子树中，且 A 的深度达到此条件下可能的最大值。
  *
  *
  *
@@ -38,7 +39,8 @@
  * 解释：
  * 我们返回值为 2 的节点，在图中用黄色标记。
  * 在图中用蓝色标记的是树的最深的节点。
- * 注意，节点 6、0 和 8 也是叶节点，但是它们的深度是 2 ，而节点 7 和 4 的深度是 3 。
+ * 注意，节点 6、0 和 8 也是叶节点，但是它们的深度是 2 ，而节点 7 和 4 的深度是
+ * 3 。
  *
  *
  * 示例 2：
@@ -67,8 +69,8 @@
  *
  *
  */
-#include <bits/stdc++.h>
 #include "struct.h"
+#include <bits/stdc++.h>
 using namespace std;
 // @lc code=start
 /**
@@ -79,34 +81,34 @@ using namespace std;
  *     TreeNode *right;
  *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
  *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left),
+ * right(right) {}
  * };
  */
 class Solution {
 public:
-    TreeNode* lcaDeepestLeaves(TreeNode* root) {
-        return get<1>(dfs(root));
-    }
+  TreeNode *lcaDeepestLeaves(TreeNode *root) { return get<1>(dfs(root)); }
 
-    tuple<int, TreeNode*> dfs(TreeNode* root) {
-        if(root == nullptr) return make_tuple(-1, root);
-        if(root->left == nullptr && root->right == nullptr) return make_tuple(0, root);
-        int ld,rd,m;
-        TreeNode* left, *right, *t;
-        tie(ld, left) = dfs(root->left);
-        tie(rd, right) = dfs(root->right);
-        if(ld == rd) {
-            m = ld;
-            t = root;
-        } else if(ld > rd) {
-            m = ld;
-            t = left;
-        } else {
-            m = rd;
-            t = right;
-        }
-        return make_tuple(m+1, t);
+  tuple<int, TreeNode *> dfs(TreeNode *root) {
+    if (root == nullptr)
+      return make_tuple(-1, root);
+    if (root->left == nullptr && root->right == nullptr)
+      return make_tuple(0, root);
+    int ld, rd, m;
+    TreeNode *left, *right, *t;
+    tie(ld, left) = dfs(root->left);
+    tie(rd, right) = dfs(root->right);
+    if (ld == rd) {
+      m = ld;
+      t = root;
+    } else if (ld > rd) {
+      m = ld;
+      t = left;
+    } else {
+      m = rd;
+      t = right;
     }
+    return make_tuple(m + 1, t);
+  }
 };
 // @lc code=end
-

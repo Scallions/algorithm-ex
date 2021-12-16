@@ -13,7 +13,8 @@
  * Total Submissions: 408.4K
  * Testcase Example:  '"leetcode"\n["leet","code"]'
  *
- * 给你一个字符串 s 和一个字符串列表 wordDict 作为字典，判定 s 是否可以由空格拆分为一个或多个在字典中出现的单词。
+ * 给你一个字符串 s 和一个字符串列表 wordDict 作为字典，判定 s
+ * 是否可以由空格拆分为一个或多个在字典中出现的单词。
  *
  * 说明：拆分时可以重复使用字典中的单词。
  *
@@ -56,27 +57,26 @@
  *
  *
  */
-#include <bits/stdc++.h>
 #include "struct.h"
+#include <bits/stdc++.h>
 using namespace std;
 // @lc code=start
 class Solution {
 public:
-    bool wordBreak(string s, vector<string>& wordDict) {
-        unordered_set<string> dset(wordDict.begin(),wordDict.end());
-        int n = s.size();
-        vector<bool> dp(n+1,false);
-        dp[0] = true;
-        for(int i=1; i<=n; ++i) {
-            for(int j=0; j<i; ++j) {
-                if(dp[j] && dset.find(s.substr(j,i-j)) != dset.end()) {
-                    dp[i] = true;
-                    break;
-                }
-            }
+  bool wordBreak(string s, vector<string> &wordDict) {
+    unordered_set<string> dset(wordDict.begin(), wordDict.end());
+    int n = s.size();
+    vector<bool> dp(n + 1, false);
+    dp[0] = true;
+    for (int i = 1; i <= n; ++i) {
+      for (int j = 0; j < i; ++j) {
+        if (dp[j] && dset.find(s.substr(j, i - j)) != dset.end()) {
+          dp[i] = true;
+          break;
         }
-        return dp[n];
+      }
     }
+    return dp[n];
+  }
 };
 // @lc code=end
-

@@ -11,7 +11,8 @@
  * Dislikes: 0
  * Total Accepted:    60.1K
  * Total Submissions: 102.3K
- * Testcase Example:  '["Solution","shuffle","reset","shuffle"]\n[[[1,2,3]],[],[],[]]'
+ * Testcase Example:
+ * '["Solution","shuffle","reset","shuffle"]\n[[[1,2,3]],[],[],[]]'
  *
  * 给你一个整数数组 nums ，设计算法来打乱一个没有重复元素的数组。
  *
@@ -36,10 +37,10 @@
  *
  * 解释
  * Solution solution = new Solution([1, 2, 3]);
- * solution.shuffle();    // 打乱数组 [1,2,3] 并返回结果。任何 [1,2,3]的排列返回的概率应该相同。例如，返回
- * [3, 1, 2]
- * solution.reset();      // 重设数组到它的初始状态 [1, 2, 3] 。返回 [1, 2, 3]
- * solution.shuffle();    // 随机返回数组 [1, 2, 3] 打乱后的结果。例如，返回 [1, 3, 2]
+ * solution.shuffle();    // 打乱数组 [1,2,3] 并返回结果。任何
+ * [1,2,3]的排列返回的概率应该相同。例如，返回 [3, 1, 2] solution.reset(); //
+ * 重设数组到它的初始状态 [1, 2, 3] 。返回 [1, 2, 3] solution.shuffle();    //
+ * 随机返回数组 [1, 2, 3] 打乱后的结果。例如，返回 [1, 3, 2]
  *
  *
  *
@@ -54,33 +55,28 @@
  *
  *
  */
-#include <bits/stdc++.h>
 #include "struct.h"
+#include <bits/stdc++.h>
 using namespace std;
 // @lc code=start
 class Solution {
 public:
-    Solution(vector<int>& nums):  back(nums.begin(), nums.end()), nums(nums) {
+  Solution(vector<int> &nums) : back(nums.begin(), nums.end()), nums(nums) {}
 
-    }
+  vector<int> reset() { return back; }
 
-    vector<int> reset() {
-        return back;
+  vector<int> shuffle() {
+    int n = nums.size();
+    for (int i = 0; i < n; ++i) {
+      int l = rand() % n;
+      int r = rand() % n;
+      swap(nums[l], nums[r]);
     }
-
-    vector<int> shuffle() {
-        int n = nums.size();
-        for(int i=0; i<n; ++i) {
-            int l = rand()%n;
-            int r = rand()%n;
-            swap(nums[l], nums[r]);
-        }
-        return nums;
-    }
-    vector<int> back;
-    vector<int> nums;
+    return nums;
+  }
+  vector<int> back;
+  vector<int> nums;
 };
-
 
 /**
  * Your Solution object will be instantiated and called as such:
@@ -89,4 +85,3 @@ public:
  * vector<int> param_2 = obj->shuffle();
  */
 // @lc code=end
-

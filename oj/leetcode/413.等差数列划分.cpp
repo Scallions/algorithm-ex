@@ -13,7 +13,8 @@
  * Total Submissions: 111.7K
  * Testcase Example:  '[1,2,3,4]'
  *
- * 如果一个数列 至少有三个元素 ，并且任意两个相邻元素之差相同，则称该数列为等差数列。
+ * 如果一个数列 至少有三个元素
+ * ，并且任意两个相邻元素之差相同，则称该数列为等差数列。
  *
  *
  * 例如，[1,3,5,7,9]、[7,7,7,7] 和 [3,-1,-5,-9] 都是等差数列。
@@ -54,33 +55,33 @@
  *
  *
  */
-#include <bits/stdc++.h>
 #include "struct.h"
+#include <bits/stdc++.h>
 using namespace std;
 // @lc code=start
 class Solution {
 public:
-    int numberOfArithmeticSlices(vector<int>& nums) {
-        int res = 0;
-        int n = nums.size();
-        if(n<3) return res;
-        int l = 0;
-        int ld = 0;
-        ld = nums[1]-nums[0];
-        for(int i=2; i<n; ++i) {
-            if(nums[i]-nums[i-1] != ld) {
-                if(i-l > 2) {
-                    res += (i-l-1)*(i-l-2)/2;
-                }
-                l = i-1;
-                ld = nums[i]-nums[i-1];
-            }
+  int numberOfArithmeticSlices(vector<int> &nums) {
+    int res = 0;
+    int n = nums.size();
+    if (n < 3)
+      return res;
+    int l = 0;
+    int ld = 0;
+    ld = nums[1] - nums[0];
+    for (int i = 2; i < n; ++i) {
+      if (nums[i] - nums[i - 1] != ld) {
+        if (i - l > 2) {
+          res += (i - l - 1) * (i - l - 2) / 2;
         }
-        if(n-l > 2) {
-            res += (n-l-1)*(n-l-2)/2;
-        }
-        return res;
+        l = i - 1;
+        ld = nums[i] - nums[i - 1];
+      }
     }
+    if (n - l > 2) {
+      res += (n - l - 1) * (n - l - 2) / 2;
+    }
+    return res;
+  }
 };
 // @lc code=end
-

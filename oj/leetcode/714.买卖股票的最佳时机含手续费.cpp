@@ -13,7 +13,8 @@
  * Total Submissions: 147.2K
  * Testcase Example:  '[1,3,2,8,4,9]\n2'
  *
- * 给定一个整数数组 prices，其中第 i 个元素代表了第 i 天的股票价格 ；整数 fee 代表了交易股票的手续费用。
+ * 给定一个整数数组 prices，其中第 i 个元素代表了第 i 天的股票价格 ；整数 fee
+ * 代表了交易股票的手续费用。
  *
  * 你可以无限次地完成交易，但是你每笔交易都需要付手续费。如果你已经购买了一个股票，在卖出它之前你就不能再继续购买股票了。
  *
@@ -53,24 +54,23 @@
  *
  *
  */
-#include <bits/stdc++.h>
 #include "struct.h"
+#include <bits/stdc++.h>
 using namespace std;
 // @lc code=start
 class Solution {
 public:
-    int maxProfit(vector<int>& prices, int fee) {
-        int f1 = -prices[0];
-        int f2= 0;
-        int res=0;
-        int t;
-        for(auto price: prices) {
-            t = f1;
-            f1 = max(f1, f2-price);
-            f2 = max(t+price-fee, f2);
-        }
-        return f2;
+  int maxProfit(vector<int> &prices, int fee) {
+    int f1 = -prices[0];
+    int f2 = 0;
+    int res = 0;
+    int t;
+    for (auto price : prices) {
+      t = f1;
+      f1 = max(f1, f2 - price);
+      f2 = max(t + price - fee, f2);
     }
+    return f2;
+  }
 };
 // @lc code=end
-

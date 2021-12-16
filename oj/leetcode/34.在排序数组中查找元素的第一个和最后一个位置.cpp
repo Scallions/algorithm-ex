@@ -13,7 +13,8 @@
  * Total Submissions: 751.8K
  * Testcase Example:  '[5,7,7,8,8,10]\n8'
  *
- * 给定一个按照升序排列的整数数组 nums，和一个目标值 target。找出给定目标值在数组中的开始位置和结束位置。
+ * 给定一个按照升序排列的整数数组 nums，和一个目标值
+ * target。找出给定目标值在数组中的开始位置和结束位置。
  *
  * 如果数组中不存在目标值 target，返回 [-1, -1]。
  *
@@ -55,52 +56,53 @@
  *
  *
  */
-#include <bits/stdc++.h>
 #include "struct.h"
+#include <bits/stdc++.h>
 using namespace std;
 // @lc code=start
 class Solution {
 public:
-    vector<int> searchRange(vector<int>& nums, int target) {
-        vector<int> idx(2,-1);
-        int n = nums.size();
-        int l = 0;
-        int r = n-1;
-        int m;
-        if(n==0||target<nums[0] || target>nums[r]) return idx;
-        // start
-        while(l<r) {
-            m = l+(r-l)/2;
-            if(nums[m] == target) {
-                r = m;
-            }
-            if(nums[m] < target) {
-                l = m+1;
-            }
-            if(nums[m] > target) {
-                r = m-1;
-            }
-        }
-        if(nums[l] != target) return idx;
-        idx[0] = l;
-        // end
-        l = 0;
-        r = n-1;
-        while(l<r) {
-            m = r-(r-l)/2;
-            if(nums[m] == target) {
-                l = m;
-            }
-            if(nums[m] < target) {
-                l = m+1;
-            }
-            if(nums[m] > target) {
-                r = m-1;
-            }
-        }
-        idx[1] = r;
-        return idx;
+  vector<int> searchRange(vector<int> &nums, int target) {
+    vector<int> idx(2, -1);
+    int n = nums.size();
+    int l = 0;
+    int r = n - 1;
+    int m;
+    if (n == 0 || target < nums[0] || target > nums[r])
+      return idx;
+    // start
+    while (l < r) {
+      m = l + (r - l) / 2;
+      if (nums[m] == target) {
+        r = m;
+      }
+      if (nums[m] < target) {
+        l = m + 1;
+      }
+      if (nums[m] > target) {
+        r = m - 1;
+      }
     }
+    if (nums[l] != target)
+      return idx;
+    idx[0] = l;
+    // end
+    l = 0;
+    r = n - 1;
+    while (l < r) {
+      m = r - (r - l) / 2;
+      if (nums[m] == target) {
+        l = m;
+      }
+      if (nums[m] < target) {
+        l = m + 1;
+      }
+      if (nums[m] > target) {
+        r = m - 1;
+      }
+    }
+    idx[1] = r;
+    return idx;
+  }
 };
 // @lc code=end
-

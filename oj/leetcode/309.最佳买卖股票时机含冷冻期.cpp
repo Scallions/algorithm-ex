@@ -13,7 +13,8 @@
  * Total Submissions: 207.4K
  * Testcase Example:  '[1,2,3,0,2]'
  *
- * 给定一个整数数组，其中第 i 个元素代表了第 i 天的股票价格 。​
+ * 给定一个整数数组，其中第 i 个元素代表了第 i 天的股票价格
+ * 。​
  *
  * 设计一个算法计算出最大利润。在满足以下约束条件下，你可以尽可能地完成更多的交易（多次买卖一支股票）:
  *
@@ -29,25 +30,24 @@
  * 解释: 对应的交易状态为: [买入, 卖出, 冷冻期, 买入, 卖出]
  *
  */
-#include <bits/stdc++.h>
 #include "struct.h"
+#include <bits/stdc++.h>
 using namespace std;
 // @lc code=start
 class Solution {
 public:
-    int maxProfit(vector<int>& prices) {
-        int l1=-prices[0]; // 有
-        int l2=0; // 无
-        int l3=0; // 冻
-        int t;
-        for(auto price: prices) {
-            t = l1;
-            l1 = max(l2-price, l1);
-            l2 = max(l3, l2);
-            l3 = max(l1+price, l3);
-        }
-        return max(l2,l3);
+  int maxProfit(vector<int> &prices) {
+    int l1 = -prices[0]; // 有
+    int l2 = 0;          // 无
+    int l3 = 0;          // 冻
+    int t;
+    for (auto price : prices) {
+      t = l1;
+      l1 = max(l2 - price, l1);
+      l2 = max(l3, l2);
+      l3 = max(l1 + price, l3);
     }
+    return max(l2, l3);
+  }
 };
 // @lc code=end
-

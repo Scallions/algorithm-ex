@@ -15,11 +15,12 @@
  *
  * 给定一个由整数数组 A 表示的环形数组 C，求 C 的非空子数组的最大可能和。
  *
- * 在此处，环形数组意味着数组的末端将会与开头相连呈环状。（形式上，当0 <= i < A.length 时 C[i] = A[i]，且当 i >= 0 时
- * C[i+A.length] = C[i]）
+ * 在此处，环形数组意味着数组的末端将会与开头相连呈环状。（形式上，当0 <= i <
+ * A.length 时 C[i] = A[i]，且当 i >= 0 时 C[i+A.length] = C[i]）
  *
- * 此外，子数组最多只能包含固定缓冲区 A 中的每个元素一次。（形式上，对于子数组 C[i], C[i+1], ..., C[j]，不存在 i <= k1,
- * k2 <= j 其中 k1 % A.length = k2 % A.length）
+ * 此外，子数组最多只能包含固定缓冲区
+ * A 中的每个元素一次。（形式上，对于子数组 C[i], C[i+1], ..., C[j]，不存在 i <=
+ * k1, k2 <= j 其中 k1 % A.length = k2 % A.length）
  *
  *
  *
@@ -68,54 +69,54 @@
  *
  *
  */
-#include <bits/stdc++.h>
 #include "struct.h"
+#include <bits/stdc++.h>
 using namespace std;
 // @lc code=start
 class Solution {
 public:
-    int maxSubarraySumCircular(vector<int>& nums) {
-        int res=nums[0];
-        int p=0;
-        int n = nums.size();
-        vector<int> mm(n, 0);
-        int ps=0;
-        int pm=nums[0];
-        for(int i=0; i<n; ++i) {
-            int num = nums[i];
-            p = max(p+num,num);
-            res = max(p, res);
-            ps += nums[i];
-            pm = max(ps, pm);
-            mm[i] = pm;
-        }
-        // 2nd
-        int ps=0;
-        int pm=nums[n-1];
-        for(int i=n-1; i>0; --i) {
-            ps += nums[i];
-            pm = max(pm, ps);
-            res = max(res, pm+mm[i-1]);
-        }
-        return res;
+  int maxSubarraySumCircular(vector<int> &nums) {
+    int res = nums[0];
+    int p = 0;
+    int n = nums.size();
+    vector<int> mm(n, 0);
+    int ps = 0;
+    int pm = nums[0];
+    for (int i = 0; i < n; ++i) {
+      int num = nums[i];
+      p = max(p + num, num);
+      res = max(p, res);
+      ps += nums[i];
+      pm = max(ps, pm);
+      mm[i] = pm;
     }
+    // 2nd
+    int ps = 0;
+    int pm = nums[n - 1];
+    for (int i = n - 1; i > 0; --i) {
+      ps += nums[i];
+      pm = max(pm, ps);
+      res = max(res, pm + mm[i - 1]);
+    }
+    return res;
+  }
 };
 // @lc code=end
 // 转换为求最小子数组和
 class Solution1 {
 public:
-    int maxSubarraySumCircular(vector<int>& nums) {
-        int maxCur, maxSum, minCur, minSum, total;
-        maxCur = maxSum = minCur = minSum =  total = nums[0];
-        for(int i = 1; i < nums.size(); ++i) {
-            maxCur  = maxCur < 0 ? nums[i] : maxCur + nums[i];
-            maxSum = max(maxSum, maxCur);
-            minCur = minCur > 0 ? nums[i] : minCur + nums[i];
-            minSum = min(minSum, minCur);
-            total += nums[i];
-        }
-        if(maxSum < 0)
-            return maxSum;
-        return max(maxSum, total - minSum);
+  int maxSubarraySumCircular(vector<int> &nums) {
+    int maxCur, maxSum, minCur, minSum, total;
+    maxCur = maxSum = minCur = minSum = total = nums[0];
+    for (int i = 1; i < nums.size(); ++i) {
+      maxCur = maxCur < 0 ? nums[i] : maxCur + nums[i];
+      maxSum = max(maxSum, maxCur);
+      minCur = minCur > 0 ? nums[i] : minCur + nums[i];
+      minSum = min(minSum, minCur);
+      total += nums[i];
     }
+    if (maxSum < 0)
+      return maxSum;
+    return max(maxSum, total - minSum);
+  }
 };

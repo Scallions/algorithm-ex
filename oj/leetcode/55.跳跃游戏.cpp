@@ -26,7 +26,8 @@
  *
  * 输入：nums = [2,3,1,1,4]
  * 输出：true
- * 解释：可以先跳 1 步，从下标 0 到达下标 1, 然后再从下标 1 跳 3 步到达最后一个下标。
+ * 解释：可以先跳 1 步，从下标 0 到达下标 1, 然后再从下标 1 跳 3
+ * 步到达最后一个下标。
  *
  *
  * 示例 2：
@@ -34,7 +35,8 @@
  *
  * 输入：nums = [3,2,1,0,4]
  * 输出：false
- * 解释：无论怎样，总会到达下标为 3 的位置。但该下标的最大跳跃长度是 0 ， 所以永远不可能到达最后一个下标。
+ * 解释：无论怎样，总会到达下标为 3 的位置。但该下标的最大跳跃长度是 0 ，
+ * 所以永远不可能到达最后一个下标。
  *
  *
  *
@@ -47,21 +49,21 @@
  *
  *
  */
-#include <bits/stdc++.h>
 #include "struct.h"
+#include <bits/stdc++.h>
 using namespace std;
 // @lc code=start
 class Solution {
 public:
-    bool canJump(vector<int>& nums) {
-        int l = 0;
-        int n = nums.size();
-        for(int i=0; i<n; ++i) {
-            if(i>l) return false;
-            l = max(l, i+nums[i]);
-        }
-        return true;
+  bool canJump(vector<int> &nums) {
+    int l = 0;
+    int n = nums.size();
+    for (int i = 0; i < n; ++i) {
+      if (i > l)
+        return false;
+      l = max(l, i + nums[i]);
     }
+    return true;
+  }
 };
 // @lc code=end
-

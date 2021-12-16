@@ -15,7 +15,8 @@
  *
  * 给你一个整数数组 coins 表示不同面额的硬币，另给一个整数 amount 表示总金额。
  *
- * 请你计算并返回可以凑成总金额的硬币组合数。如果任何硬币组合都无法凑出总金额，返回 0 。
+ * 请你计算并返回可以凑成总金额的硬币组合数。如果任何硬币组合都无法凑出总金额，返回
+ * 0 。
  *
  * 假设每一种面额的硬币有无限个。 
  *
@@ -65,25 +66,24 @@
  *
  *
  */
-#include <bits/stdc++.h>
 #include "struct.h"
+#include <bits/stdc++.h>
 using namespace std;
 // @lc code=start
 class Solution {
 public:
-    int change(int amount, vector<int>& coins) {
-        // bp
-        vector<int> dp(amount+1,0);
-        dp[0] = 1;
-        for(auto c: coins) {
-            for(int i=c; i<=amount; ++i) {
-                if(dp[i-c]!=-1) {
-                    dp[i] += dp[i-c];
-                }
-            }
+  int change(int amount, vector<int> &coins) {
+    // bp
+    vector<int> dp(amount + 1, 0);
+    dp[0] = 1;
+    for (auto c : coins) {
+      for (int i = c; i <= amount; ++i) {
+        if (dp[i - c] != -1) {
+          dp[i] += dp[i - c];
         }
-        return dp[amount];
+      }
     }
+    return dp[amount];
+  }
 };
 // @lc code=end
-

@@ -13,7 +13,8 @@
  * Total Submissions: 419.8K
  * Testcase Example:  '[[1,3,1],[1,5,1],[4,2,1]]'
  *
- * 给定一个包含非负整数的 m x n 网格 grid ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。
+ * 给定一个包含非负整数的 m x n 网格 grid
+ * ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。
  *
  * 说明：每次只能向下或者向右移动一步。
  *
@@ -46,35 +47,35 @@
  *
  *
  */
-#include <bits/stdc++.h>
 #include "struct.h"
+#include <bits/stdc++.h>
 using namespace std;
 // @lc code=start
 class Solution {
 public:
-    int maximalSquare(vector<vector<char>>& matrix) {
-        if (matrix.size() == 0 || matrix[0].size() == 0) {
-            return 0;
-        }
-        int maxSide = 0;
-        int rows = matrix.size(), columns = matrix[0].size();
-        vector<vector<int>> dp(rows, vector<int>(columns));
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                if (matrix[i][j] == '1') {
-                    if (i == 0 || j == 0) {
-                        dp[i][j] = 1;
-                    } else {
-                        dp[i][j] = min(min(dp[i - 1][j], dp[i][j - 1]), dp[i - 1][j - 1]) + 1;
-                    }
-                    maxSide = max(maxSide, dp[i][j]);
-                }
-            }
-        }
-        int maxSquare = maxSide * maxSide;
-        return maxSquare;
+  int maximalSquare(vector<vector<char>> &matrix) {
+    if (matrix.size() == 0 || matrix[0].size() == 0) {
+      return 0;
     }
+    int maxSide = 0;
+    int rows = matrix.size(), columns = matrix[0].size();
+    vector<vector<int>> dp(rows, vector<int>(columns));
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < columns; j++) {
+        if (matrix[i][j] == '1') {
+          if (i == 0 || j == 0) {
+            dp[i][j] = 1;
+          } else {
+            dp[i][j] =
+                min(min(dp[i - 1][j], dp[i][j - 1]), dp[i - 1][j - 1]) + 1;
+          }
+          maxSide = max(maxSide, dp[i][j]);
+        }
+      }
+    }
+    int maxSquare = maxSide * maxSide;
+    return maxSquare;
+  }
 };
 
 // @lc code=end
-

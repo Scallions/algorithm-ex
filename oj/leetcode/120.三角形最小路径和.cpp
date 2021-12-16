@@ -15,8 +15,10 @@
  *
  * 给定一个三角形 triangle ，找出自顶向下的最小路径和。
  *
- * 每一步只能移动到下一行中相邻的结点上。相邻的结点 在这里指的是 下标 与 上一层结点下标 相同或者等于 上一层结点下标 + 1
- * 的两个结点。也就是说，如果正位于当前行的下标 i ，那么下一步可以移动到下一行的下标 i 或 i + 1 。
+ * 每一步只能移动到下一行中相邻的结点上。相邻的结点 在这里指的是 下标 与
+ * 上一层结点下标 相同或者等于 上一层结点下标 + 1
+ * 的两个结点。也就是说，如果正位于当前行的下标 i
+ * ，那么下一步可以移动到下一行的下标 i 或 i + 1 。
  *
  *
  *
@@ -60,30 +62,29 @@
  *
  *
  */
-#include <bits/stdc++.h>
 #include "struct.h"
+#include <bits/stdc++.h>
 using namespace std;
 // @lc code=start
 class Solution {
 public:
-    int minimumTotal(vector<vector<int>>& triangle) {
-        int n = triangle.size();
-        int t;
-        int idx;
-        for(int i=1; i<n; ++i) {
-            for(int j=0; j<=i; ++j) {
-                t = INT_MAX;
-                for(int k=-1; k<1; ++k) {
-                    idx = j+k;
-                    if(idx>-1&&idx<i) {
-                        t = min(t, triangle[i-1][idx]);
-                    }
-                }
-                triangle[i][j] += t;
-            }
+  int minimumTotal(vector<vector<int>> &triangle) {
+    int n = triangle.size();
+    int t;
+    int idx;
+    for (int i = 1; i < n; ++i) {
+      for (int j = 0; j <= i; ++j) {
+        t = INT_MAX;
+        for (int k = -1; k < 1; ++k) {
+          idx = j + k;
+          if (idx > -1 && idx < i) {
+            t = min(t, triangle[i - 1][idx]);
+          }
         }
-        return *min_element(triangle[n-1].begin(), triangle[n-1].end());
+        triangle[i][j] += t;
+      }
     }
+    return *min_element(triangle[n - 1].begin(), triangle[n - 1].end());
+  }
 };
 // @lc code=end
-
