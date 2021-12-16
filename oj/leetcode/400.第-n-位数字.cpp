@@ -47,26 +47,26 @@
 // @lc code=start
 class Solution {
 public:
-    int findNthDigit(int n) {
-        int l = 1; // 长度
-        int b = 1; // base个数
-        long long c = 0;
-        long long nc = c + l * (9 * b);
-        while (nc < n) {
-            c = nc;
-            ++l;
-            b *= 10;
-            nc += (9ll * b) * l;
-        }
-        int t1 = (n - c - 1) / l + b;
-        int t2 = (n - c - 1) % l;
-        int t3 = l - t2;
-        // cout << c << ", " << l << ", " << b << endl;
-        // cout << t1 << ", " << t2 << endl;
-        while (--t3) {
-            t1 /= 10;
-        }
-        return t1 % 10;
+  int findNthDigit(int n) {
+    int l = 1; // 长度
+    int b = 1; // base个数
+    long long c = 0;
+    long long nc = c + l * (9 * b);
+    while (nc < n) {
+      c = nc;
+      ++l;
+      b *= 10;
+      nc += (9ll * b) * l;
     }
+    int t1 = (n - c - 1) / l + b;
+    int t2 = (n - c - 1) % l;
+    int t3 = l - t2;
+    // cout << c << ", " << l << ", " << b << endl;
+    // cout << t1 << ", " << t2 << endl;
+    while (--t3) {
+      t1 /= 10;
+    }
+    return t1 % 10;
+  }
 };
 // @lc code=end

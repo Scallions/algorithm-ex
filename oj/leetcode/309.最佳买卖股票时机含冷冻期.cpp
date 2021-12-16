@@ -36,18 +36,18 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-    int maxProfit(vector<int> &prices) {
-        int l1 = -prices[0]; // 有
-        int l2 = 0;          // 无
-        int l3 = 0;          // 冻
-        int t;
-        for (auto price : prices) {
-            t = l1;
-            l1 = max(l2 - price, l1);
-            l2 = max(l3, l2);
-            l3 = max(l1 + price, l3);
-        }
-        return max(l2, l3);
+  int maxProfit(vector<int> &prices) {
+    int l1 = -prices[0]; // 有
+    int l2 = 0;          // 无
+    int l3 = 0;          // 冻
+    int t;
+    for (auto price : prices) {
+      t = l1;
+      l1 = max(l2 - price, l1);
+      l2 = max(l3, l2);
+      l3 = max(l1 + price, l3);
     }
+    return max(l2, l3);
+  }
 };
 // @lc code=end

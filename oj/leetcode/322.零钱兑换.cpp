@@ -74,19 +74,19 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-    int coinChange(vector<int> &coins, int amount) {
-        // bp
-        vector<int> dp(amount + 1, -1);
-        dp[0] = 0;
-        for (auto c : coins) {
-            for (int i = c; i <= amount; ++i) {
-                if (dp[i - c] != -1) {
-                    dp[i] = dp[i] == -1 ? dp[i - c] + 1 : min(dp[i], dp[i - c] + 1);
-                }
-            }
+  int coinChange(vector<int> &coins, int amount) {
+    // bp
+    vector<int> dp(amount + 1, -1);
+    dp[0] = 0;
+    for (auto c : coins) {
+      for (int i = c; i <= amount; ++i) {
+        if (dp[i - c] != -1) {
+          dp[i] = dp[i] == -1 ? dp[i - c] + 1 : min(dp[i], dp[i - c] + 1);
         }
-        return dp[amount];
+      }
     }
+    return dp[amount];
+  }
 };
 // @lc code=end
 
@@ -95,17 +95,17 @@ public:
 */
 class Solution1 {
 public:
-    int coinChange(vector<int> &coins, int amount) {
-        int Max = amount + 1;
-        vector<int> dp(amount + 1, Max);
-        dp[0] = 0;
-        for (int i = 1; i <= amount; ++i) {
-            for (int j = 0; j < (int)coins.size(); ++j) {
-                if (coins[j] <= i) {
-                    dp[i] = min(dp[i], dp[i - coins[j]] + 1);
-                }
-            }
+  int coinChange(vector<int> &coins, int amount) {
+    int Max = amount + 1;
+    vector<int> dp(amount + 1, Max);
+    dp[0] = 0;
+    for (int i = 1; i <= amount; ++i) {
+      for (int j = 0; j < (int)coins.size(); ++j) {
+        if (coins[j] <= i) {
+          dp[i] = min(dp[i], dp[i - coins[j]] + 1);
         }
-        return dp[amount] > amount ? -1 : dp[amount];
+      }
     }
+    return dp[amount] > amount ? -1 : dp[amount];
+  }
 };

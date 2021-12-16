@@ -64,32 +64,32 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-    int superPow(int a, vector<int> &b) {
-        vector<int> vis(1337);
-        vector<int> dd;
-        a %= 1337;
-        if (a == 0)
-            return 0;
-        int t = a;
-        while (vis[t] == 0) {
-            // cout<<t<<endl;
-            vis[t] = 1;
-            dd.push_back(t);
-            t *= a;
-            t %= 1337;
-        }
-        int n = b.size();
-        int dl = dd.size();
-        int c = -1;
-        int cl = 1;
-        for (int i = n - 1; i > -1; --i) {
-            c += b[i] * cl;
-            c %= dl;
-            // next
-            cl *= 10;
-            cl %= dl;
-        }
-        return dd[c];
+  int superPow(int a, vector<int> &b) {
+    vector<int> vis(1337);
+    vector<int> dd;
+    a %= 1337;
+    if (a == 0)
+      return 0;
+    int t = a;
+    while (vis[t] == 0) {
+      // cout<<t<<endl;
+      vis[t] = 1;
+      dd.push_back(t);
+      t *= a;
+      t %= 1337;
     }
+    int n = b.size();
+    int dl = dd.size();
+    int c = -1;
+    int cl = 1;
+    for (int i = n - 1; i > -1; --i) {
+      c += b[i] * cl;
+      c %= dl;
+      // next
+      cl *= 10;
+      cl %= dl;
+    }
+    return dd[c];
+  }
 };
 // @lc code=end

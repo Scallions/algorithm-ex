@@ -50,30 +50,30 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-    string originalDigits(string s) {
-        vector<int> mp(26, 0);
-        for (auto c : s) {
-            ++mp[c - 'a'];
-        }
-        vector<int> cnt(10, 0);
-        cnt[8] = mp['g' - 'a'];
-        cnt[0] = mp['z' - 'a'];
-        cnt[2] = mp['w' - 'a'];
-        cnt[4] = mp['u' - 'a'];
-        cnt[6] = mp['x' - 'a'];
-        cnt[3] = mp['h' - 'a'] - cnt[8];
-        cnt[5] = mp['f' - 'a'] - cnt[4];
-        cnt[7] = mp['v' - 'a'] - cnt[5];
-        cnt[1] = mp['o' - 'a'] - cnt[0] - cnt[2] - cnt[4];
-        cnt[9] = mp['n' - 'a'] - cnt[1] - cnt[7];
-        cnt[9] /= 2;
-        string res;
-        for (int i = 0; i < 10; ++i) {
-            string t(cnt[i], '0' + i);
-            res += t;
-        }
-        return res;
+  string originalDigits(string s) {
+    vector<int> mp(26, 0);
+    for (auto c : s) {
+      ++mp[c - 'a'];
     }
+    vector<int> cnt(10, 0);
+    cnt[8] = mp['g' - 'a'];
+    cnt[0] = mp['z' - 'a'];
+    cnt[2] = mp['w' - 'a'];
+    cnt[4] = mp['u' - 'a'];
+    cnt[6] = mp['x' - 'a'];
+    cnt[3] = mp['h' - 'a'] - cnt[8];
+    cnt[5] = mp['f' - 'a'] - cnt[4];
+    cnt[7] = mp['v' - 'a'] - cnt[5];
+    cnt[1] = mp['o' - 'a'] - cnt[0] - cnt[2] - cnt[4];
+    cnt[9] = mp['n' - 'a'] - cnt[1] - cnt[7];
+    cnt[9] /= 2;
+    string res;
+    for (int i = 0; i < 10; ++i) {
+      string t(cnt[i], '0' + i);
+      res += t;
+    }
+    return res;
+  }
 };
 
 /*

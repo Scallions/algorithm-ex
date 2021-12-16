@@ -48,18 +48,18 @@
 // @lc code=start
 class Solution {
 public:
-    vector<vector<int>> generate(int numRows) {
-        vector<vector<int>> rows;
-        vector<int> row{1};
-        rows.push_back(row);
-        for (int i = 1; i < numRows; ++i) {
-            row.push_back(1);
-            for (int j = 0; j < i - 1; ++j) {
-                row[i - j - 1] += row[i - j - 2];
-            }
-            rows.push_back(row);
-        }
-        return rows;
+  vector<vector<int>> generate(int numRows) {
+    vector<vector<int>> rows;
+    vector<int> row{1};
+    rows.push_back(row);
+    for (int i = 1; i < numRows; ++i) {
+      row.push_back(1);
+      for (int j = 0; j < i - 1; ++j) {
+        row[i - j - 1] += row[i - j - 2];
+      }
+      rows.push_back(row);
     }
+    return rows;
+  }
 };
 // @lc code=end

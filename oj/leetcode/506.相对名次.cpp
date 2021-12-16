@@ -65,27 +65,27 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-    vector<string> findRelativeRanks(vector<int> &score) {
-        map<int, string> mp{
-            {1, "Gold Medal"}, {2, "Silver Medal"}, {3, "Bronze Medal"}};
-        int n = score.size();
-        vector<string> res(n);
-        vector<int> dd(1e6 + 1, -1);
-        for (int i = 0; i < n; ++i) {
-            dd[score[i]] = i;
-        }
-        int count = 1;
-        for (int i = 1e6; i >= 0; --i) {
-            if (dd[i] != -1) {
-                if (mp.find(count) != mp.end()) {
-                    res[dd[i]] = mp[count];
-                } else {
-                    res[dd[i]] = to_string(count);
-                }
-                ++count;
-            }
-        }
-        return res;
+  vector<string> findRelativeRanks(vector<int> &score) {
+    map<int, string> mp{
+        {1, "Gold Medal"}, {2, "Silver Medal"}, {3, "Bronze Medal"}};
+    int n = score.size();
+    vector<string> res(n);
+    vector<int> dd(1e6 + 1, -1);
+    for (int i = 0; i < n; ++i) {
+      dd[score[i]] = i;
     }
+    int count = 1;
+    for (int i = 1e6; i >= 0; --i) {
+      if (dd[i] != -1) {
+        if (mp.find(count) != mp.end()) {
+          res[dd[i]] = mp[count];
+        } else {
+          res[dd[i]] = to_string(count);
+        }
+        ++count;
+      }
+    }
+    return res;
+  }
 };
 // @lc code=end

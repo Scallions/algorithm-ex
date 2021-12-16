@@ -79,67 +79,67 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-    bool validTicTacToe(vector<string> &board) {
-        vector<int> c(6, 0);
-        int o = 0;
-        int x = 0;
-        int o1;
-        int x1;
-        bool oflag = false;
-        bool xflag = false;
-        for (int i = 0; i < 3; ++i) {
-            o1 = 0;
-            x1 = 0;
-            for (int j = 0; j < 3; ++j) {
-                if (board[i][j] == 'O') {
-                    ++o;
-                    ++o1;
-                    ++c[2 * j];
-                } else if (board[i][j] == 'X') {
-                    ++x;
-                    ++x1;
-                    ++c[2 * j + 1];
-                }
-            }
-            if (o1 == 3) {
-                oflag = true;
-            }
-            if (x1 == 3) {
-                xflag = true;
-            }
+  bool validTicTacToe(vector<string> &board) {
+    vector<int> c(6, 0);
+    int o = 0;
+    int x = 0;
+    int o1;
+    int x1;
+    bool oflag = false;
+    bool xflag = false;
+    for (int i = 0; i < 3; ++i) {
+      o1 = 0;
+      x1 = 0;
+      for (int j = 0; j < 3; ++j) {
+        if (board[i][j] == 'O') {
+          ++o;
+          ++o1;
+          ++c[2 * j];
+        } else if (board[i][j] == 'X') {
+          ++x;
+          ++x1;
+          ++c[2 * j + 1];
         }
-        if (o > x)
-            return false;
-        if (x - o > 1)
-            return false;
-        for (int i = 0; i < 5; ++i) {
-            if (c[i] == 3) {
-                if (i % 2 == 0) {
-                    oflag = true;
-                } else {
-                    xflag = true;
-                }
-            }
-        }
-        // 判断中心
-        if (board[1][1] == 'O') {
-            if (board[0][0] == 'O' && board[2][2] == 'O')
-                oflag = true;
-            if (board[0][2] == 'O' && board[2][0] == 'O')
-                oflag = true;
-        } else if (board[1][1] == 'X') {
-            if (board[0][0] == 'X' && board[2][2] == 'X')
-                xflag = true;
-            if (board[0][2] == 'X' && board[2][0] == 'X')
-                xflag = true;
-        }
-        if (xflag && oflag)
-            return false;
-        if (xflag && x - o != 1)
-            return false;
-        if (oflag && x - o != 0)
-            return false;
-        return true;
+      }
+      if (o1 == 3) {
+        oflag = true;
+      }
+      if (x1 == 3) {
+        xflag = true;
+      }
     }
+    if (o > x)
+      return false;
+    if (x - o > 1)
+      return false;
+    for (int i = 0; i < 5; ++i) {
+      if (c[i] == 3) {
+        if (i % 2 == 0) {
+          oflag = true;
+        } else {
+          xflag = true;
+        }
+      }
+    }
+    // 判断中心
+    if (board[1][1] == 'O') {
+      if (board[0][0] == 'O' && board[2][2] == 'O')
+        oflag = true;
+      if (board[0][2] == 'O' && board[2][0] == 'O')
+        oflag = true;
+    } else if (board[1][1] == 'X') {
+      if (board[0][0] == 'X' && board[2][2] == 'X')
+        xflag = true;
+      if (board[0][2] == 'X' && board[2][0] == 'X')
+        xflag = true;
+    }
+    if (xflag && oflag)
+      return false;
+    if (xflag && x - o != 1)
+      return false;
+    if (oflag && x - o != 0)
+      return false;
+    return true;
+  }
 };
 // @lc code=end

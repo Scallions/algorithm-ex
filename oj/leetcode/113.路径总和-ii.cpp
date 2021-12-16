@@ -74,24 +74,24 @@ using namespace std;
  */
 class Solution {
 public:
-    vector<vector<int>> pathSum(TreeNode *root, int targetSum) {
-        vector<vector<int>> res;
-        vector<int> stk;
-        dfs(root, stk, targetSum, res);
-        return res;
-    }
+  vector<vector<int>> pathSum(TreeNode *root, int targetSum) {
+    vector<vector<int>> res;
+    vector<int> stk;
+    dfs(root, stk, targetSum, res);
+    return res;
+  }
 
 private:
-    void dfs(TreeNode *root, vector<int> &stk, int t, vector<vector<int>> &res) {
-        if (root == nullptr)
-            return;
-        stk.push_back(root->val);
-        if (root->left == nullptr && root->right == nullptr && root->val == t) {
-            res.emplace_back(stk.begin(), stk.end());
-        }
-        dfs(root->left, stk, t - root->val, res);
-        dfs(root->right, stk, t - root->val, res);
-        stk.pop_back();
+  void dfs(TreeNode *root, vector<int> &stk, int t, vector<vector<int>> &res) {
+    if (root == nullptr)
+      return;
+    stk.push_back(root->val);
+    if (root->left == nullptr && root->right == nullptr && root->val == t) {
+      res.emplace_back(stk.begin(), stk.end());
     }
+    dfs(root->left, stk, t - root->val, res);
+    dfs(root->right, stk, t - root->val, res);
+    stk.pop_back();
+  }
 };
 // @lc code=end

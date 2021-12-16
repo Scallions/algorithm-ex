@@ -114,34 +114,32 @@ using namespace std;
  */
 class FindElements {
 public:
-    FindElements(TreeNode *root) {
-        if (root == nullptr)
-            return;
-        r = root;
-        r->val = 0;
-        queue<TreeNode *> q;
-        q.push(r);
-        while (!q.empty()) {
-            root = q.front();
-            mp.insert(root->val);
-            q.pop();
-            if (root->left) {
-                root->left->val = root->val * 2 + 1;
-                q.push(root->left);
-            }
-            if (root->right) {
-                root->right->val = root->val * 2 + 2;
-                q.push(root->right);
-            }
-        }
+  FindElements(TreeNode *root) {
+    if (root == nullptr)
+      return;
+    r = root;
+    r->val = 0;
+    queue<TreeNode *> q;
+    q.push(r);
+    while (!q.empty()) {
+      root = q.front();
+      mp.insert(root->val);
+      q.pop();
+      if (root->left) {
+        root->left->val = root->val * 2 + 1;
+        q.push(root->left);
+      }
+      if (root->right) {
+        root->right->val = root->val * 2 + 2;
+        q.push(root->right);
+      }
     }
+  }
 
-    bool find(int target) {
-        return mp.find(target) != mp.end();
-    }
+  bool find(int target) { return mp.find(target) != mp.end(); }
 
-    TreeNode *r;
-    unordered_set<int> mp;
+  TreeNode *r;
+  unordered_set<int> mp;
 };
 
 /**
