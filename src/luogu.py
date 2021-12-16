@@ -1,10 +1,12 @@
-import urllib.request
-import urllib.parse
 import json
+import os
+import urllib.parse
+import urllib.request
+
 import requests
 from sqlitedict import SqliteDict
+
 import util
-import os
 
 db_path = "luogu.db"
 user_agent = r"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36"
