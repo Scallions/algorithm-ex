@@ -9,18 +9,22 @@ import os
 db_path = 'luogu.db'
 user_agent = r'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36'
 
+
 def withUrl(u):
     return "https://www.luogu.com.cn/"+u
+
 
 def luogu_key(id):
     return "P"+str(id)
 
+
 def is_int(s):
-    try: 
+    try:
         int(s)
         return True
     except ValueError:
         return False
+
 
 class Luogu:
     def __init__(self):
@@ -45,7 +49,7 @@ class Luogu:
 
     def get_tag_problems(self, tag):
         problems = self.get_all_problems()
-        datas = [] 
+        datas = []
         for k in problems:
             try:
                 j = json.loads(problems[k])
@@ -119,7 +123,7 @@ class Luogu:
 
     def update_db(self):
         t = self.get_update_db_time()
-        if util.now()-t < 30*24*3600*1000: # 30 天更新一次
+        if util.now()-t < 30*24*3600*1000:  # 30 天更新一次
             return
         url = withUrl(f"problem/list?page={page}&_contentOnly=1")
         f = urllib.request.urlopen(url)
@@ -127,7 +131,7 @@ class Luogu:
         qlist = json.loads(content)
         count = qlist["currentData"]["problems"]["count"]
         pages = count // 50 + 2
-        for page in range(1,pages):
+        for page in range(1, pages):
             url = withUrl(f"problem/list?page={page}&_contentOnly=1")
             f = urllib.request.urlopen(url)
             content = f.read().decode('utf-8')
