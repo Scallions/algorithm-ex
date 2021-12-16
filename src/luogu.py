@@ -4,8 +4,9 @@ import urllib.parse
 import urllib.request
 
 import requests
-import util
 from sqlitedict import SqliteDict
+
+import util
 
 db_path = "luogu.db"
 user_agent = r"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36"
