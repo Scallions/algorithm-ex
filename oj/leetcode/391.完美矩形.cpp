@@ -15,49 +15,49 @@
  *
  * 给你一个数组 rectangles ，其中 rectangles[i] = [xi, yi, ai, bi]
  * 表示一个坐标轴平行的矩形。这个矩形的左下顶点是 (xi, yi) ，右上顶点是 (ai, bi) 。
- * 
+ *
  * 如果所有矩形一起精确覆盖了某个矩形区域，则返回 true ；否则，返回 false 。
- * 
- * 
+ *
+ *
  * 示例 1：
- * 
- * 
+ *
+ *
  * 输入：rectangles = [[1,1,3,3],[3,1,4,2],[3,2,4,4],[1,3,2,4],[2,3,3,4]]
  * 输出：true
- * 解释：5 个矩形一起可以精确地覆盖一个矩形区域。 
- * 
- * 
+ * 解释：5 个矩形一起可以精确地覆盖一个矩形区域。
+ *
+ *
  * 示例 2：
- * 
- * 
+ *
+ *
  * 输入：rectangles = [[1,1,2,3],[1,3,2,4],[3,1,4,2],[3,2,4,4]]
  * 输出：false
  * 解释：两个矩形之间有间隔，无法覆盖成一个矩形。
- * 
+ *
  * 示例 3：
- * 
- * 
+ *
+ *
  * 输入：rectangles = [[1,1,3,3],[3,1,4,2],[1,3,2,4],[3,2,4,4]]
  * 输出：false
  * 解释：图形顶端留有空缺，无法覆盖成一个矩形。
- * 
+ *
  * 示例 4：
- * 
- * 
+ *
+ *
  * 输入：rectangles = [[1,1,3,3],[3,1,4,2],[1,3,2,4],[2,2,4,4]]
  * 输出：false
  * 解释：因为中间有相交区域，虽然形成了矩形，但不是精确覆盖。
- * 
- * 
- * 
+ *
+ *
+ *
  * 提示：
- * 
- * 
+ *
+ *
  * 1 <= rectangles.length <= 2 * 10^4
  * rectangles[i].length == 4
  * -10^5 <= xi, yi, ai, bi <= 10^5
- * 
- * 
+ *
+ *
  */
 #include <bits/stdc++.h>
 #include "struct.h"
@@ -123,8 +123,8 @@ public:
         map<int, vector<tuple<int,int>>> mp; // 行对应编号
         int n = rectangles.size();
         // 统计每行信息
-        for(int i=0; i<n; ++i){
-            for(int j=rectangles[i][1]; j<rectangles[i][3]; ++j){
+        for(int i=0; i<n; ++i) {
+            for(int j=rectangles[i][1]; j<rectangles[i][3]; ++j) {
                 mp[j].push_back(make_tuple(rectangles[i][0], rectangles[i][2]));
             }
         }
@@ -132,9 +132,9 @@ public:
         int s = 1e6,e=1e6;
         int st,et;
         int pre = -1e6;
-        for(auto it=mp.begin(); it!=mp.end(); ++it){
+        for(auto it=mp.begin(); it!=mp.end(); ++it) {
             cout << it->first << endl;
-            if(pre != -1e6 && it->first != pre+1){
+            if(pre != -1e6 && it->first != pre+1) {
                 return false;
             }
             pre = it->first;
@@ -142,26 +142,26 @@ public:
             sort(t.begin(), t.end());
             int ps=1e6;
             int ss=1e6;
-            for(auto T: t){
+            for(auto T: t) {
                 st = get<0>(T);
                 et = get<1>(T);
                 // 判断是否有空隙 或者 重复
-                if(ps!=1e6 && et!=ps){
+                if(ps!=1e6 && et!=ps) {
                     return false;
                 }
                 ps = st;
-                if(s == 1e6){
+                if(s == 1e6) {
                     s = st;
                 }
-                if(ss == 1e6){
+                if(ss == 1e6) {
                     ss = st;
                 }
             }
-            if(e == 1e6){
+            if(e == 1e6) {
                 e = et;
             }
             // 判断开始结尾是否一致
-            if(e != et || s != ss){
+            if(e != et || s != ss) {
                 return false;
             }
         }
