@@ -6,16 +6,16 @@ from sqlitedict import SqliteDict
 import util
 import os
 
-db_path = 'luogu.db'
-user_agent = r'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36'
+db_path = "luogu.db"
+user_agent = r"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36"
 
 
 def withUrl(u):
-    return "https://www.luogu.com.cn/"+u
+    return "https://www.luogu.com.cn/" + u
 
 
 def luogu_key(id):
-    return "P"+str(id)
+    return "P" + str(id)
 
 
 def is_int(s):
@@ -41,7 +41,7 @@ class Luogu:
                 self.flasks.append(k)
 
     def init_db(self):
-        d = SqliteDict(util.get_db('luogu.sqlite'), autocommit=True)
+        d = SqliteDict(util.get_db("luogu.sqlite"), autocommit=True)
         return d
 
     def close_db(self):
@@ -53,7 +53,7 @@ class Luogu:
         for k in problems:
             try:
                 j = json.loads(problems[k])
-                tags = j['tags']
+                tags = j["tags"]
                 if len(tags) > 0 and t in tag:
                     datas.append(j)
             except Exception as e:
@@ -82,7 +82,7 @@ class Luogu:
             print("title not exist:", id)
             return str(id)
         j = json.loads(content)
-        return j['difficulty']
+        return j["difficulty"]
 
     def check_finish(self, id):
         for k in self.finished:
@@ -110,7 +110,7 @@ class Luogu:
             print("title not exist:", id)
             return str(id)
         j = json.loads(content)
-        return j['title']
+        return j["title"]
 
     def get_update_db_time(self):
         t = self.dict.get("luogu_update_db_time")
@@ -123,25 +123,25 @@ class Luogu:
 
     def update_db(self):
         t = self.get_update_db_time()
-        if util.now()-t < 30*24*3600*1000:  # 30 天更新一次
+        if util.now() - t < 30 * 24 * 3600 * 1000:  # 30 天更新一次
             return
         url = withUrl(f"problem/list?page={page}&_contentOnly=1")
         f = urllib.request.urlopen(url)
-        content = f.read().decode('utf-8')
+        content = f.read().decode("utf-8")
         qlist = json.loads(content)
         count = qlist["currentData"]["problems"]["count"]
         pages = count // 50 + 2
         for page in range(1, pages):
             url = withUrl(f"problem/list?page={page}&_contentOnly=1")
             f = urllib.request.urlopen(url)
-            content = f.read().decode('utf-8')
+            content = f.read().decode("utf-8")
             qlist = json.loads(content)
             try:
                 # for q in qlist['stat_status_pairs']:
                 for q in qlist["currentData"]["problems"]["result"]:
-                    id = q['pid']
-                    level = q['difficulty']
-                    title = q['title']
+                    id = q["pid"]
+                    level = q["difficulty"]
+                    title = q["title"]
                     print("id:", id, level, title)
                     value = json.dumps(q)
                     self.save_problem(id, value)
@@ -151,6 +151,6 @@ class Luogu:
                 pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     luogu = Luogu()
     luogu.update_db()
