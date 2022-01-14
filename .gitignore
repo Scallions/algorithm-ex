@@ -171,3 +171,8 @@ animations/storage/Text
 ## test
 test/
 .DS_Store
+
+
+## idea
+.idea
+algorithm-ex.iml
