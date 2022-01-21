@@ -2,7 +2,7 @@
  * @Author       : Scallions
  * @Date         : 2020-03-20 11:05:18
  * @LastEditors  : Scallions
- * @LastEditTime : 2020-03-20 11:10:50
+ * @LastEditTime : 2022-01-21 12:41:48
  * @FilePath     : /algorithm-ex/structure/array/array.md
  * @Description  : 
  -->
@@ -23,4 +23,7 @@
 
 ## 常用操作
 
-- 
+- 初始化
+- 增删改查
+- 长度
+- 遍历
