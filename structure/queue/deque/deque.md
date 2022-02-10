@@ -1,15 +1,16 @@
 <!--
  * @Author       : Scallions
- * @Date         : 2020-03-22 19:38:44
+ * @Date         : 2021-08-23 03:32:13
  * @LastEditors  : Scallions
- * @LastEditTime : 2020-03-22 19:40:11
+ * @LastEditTime : 2022-01-25 14:31:01
  * @FilePath     : /algorithm-ex/structure/queue/deque/deque.md
  * @Description  : 
- -->
+-->
 
  # 双端队列
 
  ## 常用操作
+ 
 
  ## 优缺点
 
