@@ -16,7 +16,7 @@ def leetcode_key(id):
     return "leetcode_"+str(id)
 
 def is_int(s):
-    try: 
+    try:
         int(s)
         return True
     except ValueError:
@@ -31,7 +31,7 @@ class Leetcode:
         p = util.get_root("oj", "leetcode")
         entries = os.listdir(p)
         for k in entries:
-            if k.endswith(".cpp"):
+            if k.endswith(".cpp") or k.endswith(".py") or k.endswith(".java"):
                 self.finished.append(k)
             elif k.endswith(".md"):
                 self.flasks.append(k)
@@ -45,7 +45,7 @@ class Leetcode:
 
     def get_tag_problems(self, tag):
         problems = self.get_all_problems()
-        datas = [] 
+        datas = []
         for k in problems:
             try:
                 j = json.loads(problems[k])
@@ -185,7 +185,7 @@ class Leetcode:
                 paid_only = q['paid_only']
                 title = self.get_title_with_slug(id, slug, paid_only)
                 print("id:", id, level, title)
-            
+
             self.save_update_db_time()
         except Exception as e:
             print("leetcode update db error:", e)

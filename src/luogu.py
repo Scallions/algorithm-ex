@@ -36,7 +36,7 @@ class Luogu:
         p = util.get_root("oj", "luogu")
         entries = os.listdir(p)
         for k in entries:
-            if k.endswith(".cpp"):
+            if k.endswith(".cpp") or k.endswith(".py"):
                 self.finished.append(k)
             elif k.endswith(".md"):
                 self.flasks.append(k)
@@ -55,7 +55,7 @@ class Luogu:
             try:
                 j = json.loads(problems[k])
                 tags = j["tags"]
-                if len(tags) > 0 and t in tag:
+                if len(tags) > 0 and tag in tags:
                     datas.append(j)
             except Exception as e:
                 print("unknow key:", k, e)
@@ -126,7 +126,7 @@ class Luogu:
         t = self.get_update_db_time()
         if util.now() - t < 30 * 24 * 3600 * 1000:  # 30 天更新一次
             return
-        url = withUrl(f"problem/list?page={page}&_contentOnly=1")
+        url = withUrl(f"problem/list?page=1&_contentOnly=1")
         f = urllib.request.urlopen(url)
         content = f.read().decode("utf-8")
         qlist = json.loads(content)
