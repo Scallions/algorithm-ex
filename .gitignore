@@ -176,3 +176,7 @@ test/
 ## idea
 .idea
 algorithm-ex.iml
+
+# Added by cargo
+
+/target
