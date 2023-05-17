@@ -180,3 +180,5 @@ algorithm-ex.iml
 # Added by cargo
 
 /target
+bin/exercism
+LOCAL.md
