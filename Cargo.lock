@@ -7,6 +7,14 @@ name = "algorithm-ex"
 version = "0.1.0"
 
 [[package]]
+name = "anagram"
+version = "0.0.0"
+
+[[package]]
+name = "clock"
+version = "2.4.0"
+
+[[package]]
 name = "gigasecond"
 version = "2.0.0"
 dependencies = [
