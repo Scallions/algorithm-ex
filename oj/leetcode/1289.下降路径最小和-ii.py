@@ -58,14 +58,22 @@ class Solution:
     def minFallingPathSum(self, grid: List[List[int]]) -> int:
         rows = len(grid)
         c = len(grid[0])
+        ct = [0 for i in range(c)]
+        rt = [0 for i in range(c)]
         for i in range(rows-1):
-            for j in range(c):
-                r = 20000
-                for k in range(c):
-                    if k == j:
-                        continue
-                    r = min(r, grid[i+1][j] + grid[i][k])
-                grid[i+1][j] = r
+            # 统计前一行最小值列表
+            ct[0] = grid[i][0]
+            rt[-1] = grid[i][-1]
+            for j in range(1, c):
+                ct[j] = min(grid[i][j], ct[j-1])
+            for j in range(1, c):
+                k = c-j-1
+                rt[k] = min(grid[i][k], rt[k+1])
+            for j in range(1, c-1):
+                grid[i+1][j] = grid[i+1][j] + min(ct[j-1], rt[j+1])
+            if c > 1:
+                grid[i+1][0] = grid[i+1][0] + rt[1]
+                grid[i+1][-1] = grid[i+1][-1] + ct[-2]
         return min(grid[-1])
 # @lc code=end
 
