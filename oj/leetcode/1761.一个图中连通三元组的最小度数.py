@@ -89,7 +89,7 @@ class Solution:
                 for j in range(i+1, l):
                     e = ss[j]
                     if e in vis:
-                        continue
+                        continueg
                     if not s in cnt[e]:
                         continue
                     flag = True
