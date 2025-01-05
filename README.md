@@ -23,6 +23,9 @@
 - algorithm
   - sort
   - ...
+- oj
+  - leetcode
+  - ...
 
 ### Leetcode路线图合集
 采用[acm-clan/algorithm-stone](https://github.com/acm-clan/algorithm-stone)的脚本生成
